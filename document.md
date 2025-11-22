@@ -43,7 +43,7 @@
 
 ## <a name="contexto"></a>1.1. Contexto e Problema
 
-&emsp; A Geração Z (jovens entre 18 e 30 anos) representa um desafio paradoxal para o mercado financeiro. Embora sejam nativos digitais e tenham acesso irrestrito à informação, a inadimplência nessa faixa etária é alarmante: [12,5 milhões de jovens estão endividados no Brasil](#r1), conforme dados apresentados pela Confederação Nacional de Dirigentes Lojistas (CNDL) e do Serviço de Proteção ao Crédito (SPC Brasil). Este problema não se limita apenas ao uso inadequado do crédito tradicional; ele migrou para novos vetores de risco, como o alto consumo impulsivo em e-commerce e, criticamente, o vício em recompensas imediatas de apostas online (bets).
+&emsp; A Geração Z (jovens entre 18 e 30 anos) representa um desafio paradoxal para o mercado financeiro. Embora sejam nativos digitais e tenham acesso irrestrito à informação, a inadimplência nessa faixa etária é alarmante: 12,5 milhões de jovens estão endividados no Brasil<sup>[1](#c5)</sup>, conforme dados apresentados pela Confederação Nacional de Dirigentes Lojistas (CNDL) e do Serviço de Proteção ao Crédito (SPC Brasil). Este problema não se limita apenas ao uso inadequado do crédito tradicional; ele migrou para novos vetores de risco, como o alto consumo impulsivo em e-commerce e, criticamente, o vício em recompensas imediatas de apostas online (bets).
 
 &emsp; O jovem endividado cai em um ciclo de autoengano: tenta ignorar a dívida e busca "soluções" rápidas, como tentar a sorte ou fazer um novo crédito. A educação financeira tradicional falha ao ser majoritariamente teórica, lenta e desengajadora, não conseguindo competir com o alto nível de dopamina gerado pelas plataformas de jogo ou redes sociais.
 
@@ -89,4 +89,4 @@
 
 # <a name="c5"></a>5. Referências
 
-- <a name="r1">G1. *Educação financeira: número de jovens inadimplentes no Brasil é preocupante*. Santarém, 18 nov. 2022. Disponível em: <https://g1.globo.com/pa/santarem-regiao/noticia/2022/11/18/educacao-financeira-numero-de-jovens-inadiplentes-no-brasil-e-preocupante.ghtml>. Acesso em: 22 nov. 2025.</a>
+[1] G1. *Educação financeira: número de jovens inadimplentes no Brasil é preocupante*. Santarém, 18 nov. 2022. Disponível em: <https://g1.globo.com/pa/santarem-regiao/noticia/2022/11/18/educacao-financeira-numero-de-jovens-inadiplentes-no-brasil-e-preocupante.ghtml>. Acesso em: 22 nov. 2025.</a>
