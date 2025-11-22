@@ -51,6 +51,23 @@
 
 ## <a name="persona"></a>1.2. Persona
 
+&emsp; A persona é uma representação semifictícia do nosso usuário-alvo ideal (Geração Z entre 18 e 30 anos), criada a partir da coleta e análise de dados. Ela serve como um guia fundamental para orientar as decisões de design, usabilidade e, principalmente, a didática do produto.
+
+&emsp; A importância da persona Lucas para o projeto reside no fato de que sua espiral de dívida, que começa com o consumo compulsivo e é agravada pela busca por ganhos rápidos em plataformas de aposta, valida diretamente a necessidade dos mecanismos mais inovadores do XP Control. Ao focar na sua dor específica, garantimos que os recursos ofertados sejam não apenas tecnicamente possíveis, mas didaticamente relevantes.
+
+COLOCAR A PERSONA NO TEMPLATE E ESTRUTURAR MELHOR ELA
+
+| Característica       | Detalhe                                                                                                         | Relevância para o Projeto                                                                                                                        |
+|----------------------|------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Nome**             | Lucas S. Oliveira                                                                                                | "Jovem adulto em formação, vivenciando a pressão social do ambiente universitário."                                                               |
+| **Idade**            | 21 anos — Estudante de Engenharia / Estagiário (Renda: R$ 1.800)                                                 | —                                                                                                                                                 |
+| **Situação**         | **Dívida total de R$ 8.200**. Começou com R$ 6.000 em compras compulsivas (eletrônicos e vestuário).            | O problema nasce no consumo de status. O sistema deve ajudá-lo a diferenciar desejo de necessidade e parar de fugir dos números.                 |
+| **O Ponto de Virada**| Ao ver a fatura crescer, buscou “soluções rápidas” e perdeu **R$ 2.200** em apostas online.                      | Esse comportamento de risco deve ser rastreado pelo sistema (via Open Finance + Jogo 1).                                                          |
+| **Comportamento**    | Busca prazer imediato, evita abrir o app do banco, sente vergonha e acredita que “sorte” resolverá seus problemas.| O Assistente Virtual precisa ser proativo. O Jogo 1 transforma o vício em sorte em habilidade estratégica.                                        |
+| **Objetivo**         | Quitar dívidas em 12 meses, recuperar a confiança financeira e se tornar um investidor disciplinado usando a XP. | A jornada do **XP Control** deve guiá-lo de endividado → disciplinado → investidor.                                                              |
+
+&emsp; Em suma, a jornada de Lucas justifica a abordagem e a arquitetura de intervenção do XP Control. O projeto deve, portanto, canalizar a busca por dopamina e recompensa imediata (que o levou ao risco) para a satisfação de resolver problemas estratégicos, guiando-o rumo à disciplina financeira e à fidelização com a XP Inc.
+
 ## <a name="objetivo"></a>1.3. Objetivo do Projeto
 
 # <a name="c2"></a>2. O Produto e a Didática
@@ -81,9 +98,9 @@
 
 ## <a name="requisitos-nao-funcionais"></a>3.6. Requisitos Não Funcionais
 
-# <a name="c4"></a>4. Monetização e Futuro
+# <a name="c4"></a>4. Viabilidade e Futuro
 
-## <a name="monetizacao"></a>4.1. Monetização
+## <a name="monetizacao"></a>4.1. Viabilidade Econômica
 
 ## <a name="proximos-passos"></a>4.2. Próximos Passos
 
