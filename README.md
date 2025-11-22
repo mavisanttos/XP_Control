@@ -12,8 +12,8 @@
 
 ## Integrantes: 
 - <a href="https://www.linkedin.com/in/maria-vit%C3%B3ria-dos-santos/">Maria Vitória</a>
-- <a href="https://www.linkedin.com/in/maria-vit%C3%B3ria-dos-santos/">Matheus Ferreira</a> 
-- <a href="https://www.linkedin.com/in/maria-vit%C3%B3ria-dos-santos/">Paulo Henrique</a> 
+- <a href="https://www.linkedin.com/in/matheusferreirads-/">Matheus Ferreira</a> 
+- <a href="https://www.linkedin.com/in/paulo-henrique0601/">Paulo Henrique</a> 
 
 ## Descrição
 

@@ -3,8 +3,8 @@
 ## BBG
 
 - <a href="https://www.linkedin.com/in/maria-vit%C3%B3ria-dos-santos/">Maria Vitória</a>
-- <a href="https://www.linkedin.com/in/maria-vit%C3%B3ria-dos-santos/">Matheus Ferreira</a>
-- <a href="https://www.linkedin.com/in/maria-vit%C3%B3ria-dos-santos/">Paulo Henrique</a>
+- <a href="https://www.linkedin.com/in/matheusferreirads-/">Matheus Ferreira</a>
+- <a href="https://www.linkedin.com/in/paulo-henrique0601/">Paulo Henrique</a>
 
 ## Sumário
 
@@ -14,11 +14,12 @@
 - [1.3. Objetivo do Projeto](#objetivo)
 
 [2. O Produto e a Didática](#c2)
-- [2.1. Jornada de Usuário](#jornada-usuario)
-- [2.2. Funcionalidades Chave e Metodologia](#funcionalidades-chave)
-    - [2.2.1. Gamificação Bimodal](#funcionalidades-chave)
-    - [2.2.2. Metodologia do Jogo (Alocação Estratégica)](#funcionalidades-chave)
-- [2.3. Funcionalidades da Interface](#funcionalidades-interface)
+- [2.1. Solução Proposta](#solucao)
+- [2.2. Jornada de Usuário](#jornada-usuario)
+- [2.3. Funcionalidades Chave e Metodologia](#funcionalidades-chave)
+    - [2.3.1. Gamificação Bimodal](#funcionalidades-chave)
+    - [2.3.2. Metodologia do Jogo (Alocação Estratégica)](#funcionalidades-chave)
+- [2.4. Funcionalidades da Interface](#funcionalidades-interface)
 
 [3. Arquitetura e Implementação](#c3)
 - [3.1. Arquitetura do Sistema](#arquitetura)
@@ -70,17 +71,25 @@ COLOCAR A PERSONA NO TEMPLATE E ESTRUTURAR MELHOR ELA
 
 ## <a name="objetivo"></a>1.3. Objetivo do Projeto
 
+&emsp; O objetivo primário do XP Control é reverter o ciclo de endividamento da Geração Z, transformando um passivo de alto risco (como a persona Lucas) em uma base sólida de futuros investidores qualificados. O projeto se posiciona como uma Plataforma de Intervenção Comportamental, desenhada para ser o ponto de virada na jornada financeira do jovem, utilizando a tecnologia para combater a impulsividade e a desorganização.
+
+&emsp; A meta é clara: guiar o usuário da crise à custódia. Para tal, a solução busca cumprir um duplo propósito: primeiro, fornecer ferramentas tecnológicas para um diagnóstico financeiro transparente e imediato; e segundo, aplicar princípios de gamificação para forçar a disciplina e o comportamento estratégico, revertendo o vício em recompensas rápidas para a satisfação do progresso real.
+
+&emsp; Em resumo, a Seção 1 estabeleceu que o problema do endividamento jovem é um desafio comportamental que exige uma solução inovadora que hackeie o sistema de dopamina. Ao definir o Contexto de risco e o perfil vulnerável da Persona Lucas, o XP Control solidifica sua missão de ser a ferramenta didática e tecnológica que guia o jovem da crise à carteira de investimentos. A próxima seção detalhará O Produto e a Didática que materializam estes objetivos, explicando a Jornada de Usuário e a Metodologia de Jogo de forma prática.
+
 # <a name="c2"></a>2. O Produto e a Didática
 
-## <a name="jornada-usuario"></a>2.1. Jornada de Usuário
+## <a name="solucao"></a>2.1. Solução Proposta
 
-## <a name="funcionalidades-chave"></a>2.2. Funcionalidades Chave e Metodologia
+## <a name="jornada-usuario"></a>2.2. Jornada de Usuário
 
-### <a name="funcionalidades-chave"></a>2.2.1. Gamificação Bimodal
+## <a name="funcionalidades-chave"></a>2.3. Funcionalidades Chave e Metodologia
 
-### <a name="funcionalidades-chave"></a>2.2.2. Metodologia do Jogo (Alocação Estratégica)
+### <a name="funcionalidades-chave"></a>2.3.1. Gamificação Bimodal
 
-## <a name="funcionalidades-interface"></a>2.3. Funcionalidades da Interface
+### <a name="funcionalidades-chave"></a>2.3.2. Metodologia do Jogo (Alocação Estratégica)
+
+## <a name="funcionalidades-interface"></a>2.4. Funcionalidades da Interface
 
 # <a name="c3"></a>3. Arquitetura e Implementação
 
