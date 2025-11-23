@@ -27,11 +27,29 @@ export default function BottomNav({ currentScreen, onScreenChange, investmentsUn
               key={item.id}
               onClick={() => onScreenChange(item.id)}
               className={`flex flex-col items-center gap-1 px-2 md:px-4 py-2 rounded-lg transition-all duration-200 ${
-                isActive ? "bg-emerald-500 text-slate-950 scale-105" : "text-slate-400 hover:text-white"
+                isActive ? "scale-105" : "text-slate-400 hover:text-white"
               }`}
             >
-              <Icon size={20} className="md:size-6" />
-              <span className="text-xs font-semibold">{item.label}</span>
+              <Icon 
+                size={20} 
+                className={`md:size-6 ${
+                  isActive 
+                    ? "text-emerald-400" 
+                    : ""
+                }`}
+                style={isActive ? {
+                  filter: 'drop-shadow(0 0 3px rgba(16, 185, 129, 0.8)) drop-shadow(0 0 6px rgba(168, 85, 247, 0.6))'
+                } : {}}
+              />
+              <span 
+                className={`text-xs font-semibold ${
+                  isActive 
+                    ? "bg-gradient-to-r from-emerald-500 to-purple-500 bg-clip-text text-transparent" 
+                    : ""
+                }`}
+              >
+                {item.label}
+              </span>
             </button>
           )
         })}

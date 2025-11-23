@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { ChevronRight, TrendingUp } from "lucide-react"
 import FinanceSuccessModal from "@/components/finance-success-modal"
+import Aurora from "@/components/aurora"
 
 interface OpenFinanceScreenProps {
   onComplete: () => void
@@ -24,8 +25,18 @@ export default function OpenFinanceScreen({ onComplete }: OpenFinanceScreenProps
 
   return (
     <>
-      <div className="w-full h-screen flex flex-col items-center justify-center bg-slate-950 px-4 pb-8">
-        <div className="w-full max-w-md flex flex-col gap-6">
+      <div className="w-full h-screen flex flex-col items-center justify-center bg-slate-950 px-4 pb-8 relative">
+        {/* Efeito Aurora no fundo */}
+        <div className="fixed inset-0 z-[1] pointer-events-none">
+          <Aurora
+            colorStops={["#10b981", "#a855f7", "#10b981"]}
+            blend={0.5}
+            amplitude={1.0}
+            speed={0.5}
+          />
+        </div>
+        
+        <div className="w-full max-w-md flex flex-col gap-6 relative z-20">
           {/* Icon */}
           <div className="flex justify-center mb-4">
             <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center">
@@ -36,7 +47,7 @@ export default function OpenFinanceScreen({ onComplete }: OpenFinanceScreenProps
           {/* Content */}
           <div className="text-center space-y-4">
             <h1 className="text-2xl md:text-3xl font-bold text-white">Conectar seus bancos</h1>
-            <p className="text-slate-400 text-sm md:text-base leading-relaxed">
+            <p className="text-slate-200 text-sm md:text-base leading-relaxed drop-shadow">
               Para criar sua estratégia de saída da dívida, precisamos conectar suas contas bancárias. Será seguro e
               rápido.
             </p>
@@ -54,8 +65,8 @@ export default function OpenFinanceScreen({ onComplete }: OpenFinanceScreenProps
                   <span className="text-xs text-slate-950 font-bold">✓</span>
                 </div>
                 <div className="text-left">
-                  <p className="font-medium text-white text-sm">{benefit.title}</p>
-                  <p className="text-xs text-slate-400">{benefit.desc}</p>
+                  <p className="font-medium text-white text-sm drop-shadow">{benefit.title}</p>
+                  <p className="text-xs text-slate-200 drop-shadow">{benefit.desc}</p>
                 </div>
               </div>
             ))}

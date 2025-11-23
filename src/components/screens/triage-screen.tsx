@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import TriagePopup from "@/components/triage-popup"
+import Aurora from "@/components/aurora"
 
 interface TriageScreenProps {
   onComplete: () => void
@@ -20,10 +21,20 @@ export default function TriageScreen({ onComplete }: TriageScreenProps) {
   }
 
   return (
-    <div className="w-full h-screen flex flex-col items-center justify-center bg-slate-950 px-4">
-      <div className="w-full max-w-md text-center space-y-4">
+    <div className="w-full h-screen flex flex-col items-center justify-center bg-slate-950 px-4 relative">
+      {/* Efeito Aurora no fundo */}
+      <div className="fixed inset-0 z-[1] pointer-events-none">
+        <Aurora
+          colorStops={["#10b981", "#a855f7", "#10b981"]}
+          blend={0.5}
+          amplitude={1.0}
+          speed={0.5}
+        />
+      </div>
+      
+      <div className="w-full max-w-md text-center space-y-4 relative z-20">
         <h1 className="text-2xl md:text-3xl font-bold text-white">Triagem de Dívidas</h1>
-        <p className="text-slate-400 text-sm md:text-base">Respondendo às perguntas do seu agente de IA...</p>
+        <p className="text-slate-200 text-sm md:text-base drop-shadow">Respondendo às perguntas do seu agente de IA...</p>
       </div>
 
       <TriagePopup isOpen={showPopup} currentStep={currentStep} onNext={handleNext} onSkip={onComplete} />
