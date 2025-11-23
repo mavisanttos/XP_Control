@@ -117,7 +117,7 @@ export default function Dashboard({ userProfile, onNavigate, debtsCovered, onLog
             {/* Fundo transparente */}
             <div className="absolute inset-[1px] rounded-lg bg-slate-950/90" />
             {/* Texto */}
-            <span className="relative z-10 text-white font-bold">Iniciar Jogo 1: Estratégia</span>
+            <span className="relative z-10 text-white font-bold">Iniciar Jogos</span>
           </button>
         </div>
 
