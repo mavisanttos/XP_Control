@@ -63,11 +63,13 @@
 </div>
 
 **Biografia** <br>
- &emsp; Lucas é um jovem de 21 anos da cidade de São paulo e é um nativo digital clássico. Cresceu com a internet na palma da mão e moldou sua visão de mundo através das redes sociais, onde a aparência de sucesso é a moeda de troca social.
+ &emsp; Lucas é um jovem de 21 anos da cidade de São Paulo e é um nativo digital clássico. Cresceu com a internet na palma da mão e moldou sua visão de mundo através das redes sociais, onde a aparência de sucesso é a moeda de troca social. Ele é estudante de Engenharia em tempo integral e tem uma renda de estagiário de R$ 1.800.
 
- &emsp; No início da faculdade, começou a vida financeira de forma desorganizada: o primeiro cartão de crédito foi usado para parcelar um iPhone e roupas de marca para se enquadrar no grupo. Sem controle, o salário de estagiário logo foi engolido pelas parcelas.
+ &emsp; No início da faculdade, começou a vida financeira de forma desorganizada: o primeiro cartão de crédito foi usado para parcelar um telefone e roupas de marca para se enquadrar no grupo. Sem controle, o salário de estagiário logo foi engolido pelas parcelas e pelos juros.
 
- **O Ponto de Virada (A Crise)** <br>
+&emsp; Ao ver a fatura crescer descontroladamente, buscou "soluções" rápidas e, influenciado por colegas e influencias digitais, perdeu R$ 2.200 em plataformas de apostas online, agravando sua dívida total de R$ 8.200. Agora, sente vergonha e acredita que a sorte pode resolver seus problemas. O XP Control deve reverter esse mindset de azar para estratégia.
+
+**O Ponto de Virada (A Crise)** <br>
  &emsp; Ao ver a fatura do cartão superar sua renda mensal, Lucas sentiu o pânico. Em vez de cortar gastos, buscou uma "solução mágica". Influenciado por vídeos de "Green" no TikTok, começou a fazer apostas esportivas (Bets) na esperança de dobrar seu dinheiro rápido e quitar a dívida.
 
  &emsp; O resultado foi catastrófico: perdeu muito dinheiro reservado para despesas básicas e entrou no Cheque Especial. Hoje, vive um ciclo de ansiedade, negação e medo de ser descoberto.
@@ -75,10 +77,10 @@
 
 **Dores & Frustrações (O Problema)** <br>
  &emsp; **Negação Financeira:** Sente tanta vergonha e ansiedade que evita abrir o aplicativo do banco. Não sabe exatamente quanto deve, pois tem medo de encarar o número.
-
-&emsp; **Medo Social (Reputação):** Seu maior pesadelo não é a dívida em si, mas a vergonha pública. Teme que o cartão seja recusado em um encontro ou que seus pais descubram o "Nome Sujo".
-
-&emsp; **Tédio com o Tradicional:** Acha planilhas de Excel e vídeos de educação financeira de 40 minutos insuportavelmente chatos e lentos.
+ 
+ &emsp; **Medo Social (Reputação):** Seu maior pesadelo não é a dívida em si, mas a vergonha pública. Teme que o cartão seja recusado em um encontro ou que seus pais descubram o "Nome Sujo".
+ 
+ &emsp; **Tédio com o Tradicional:** Acha planilhas de Excel e vídeos de educação financeira de 40 minutos insuportavelmente chatos e lentos.
 
 **Desejos & Motivações (A Solução Ideal)** <br>
 &emsp; **Dopamina Rápida:** Seu cérebro é viciado em recompensas imediatas. Ele precisa sentir que está "ganhando" algo hoje, não daqui a 30 anos.
@@ -87,9 +89,10 @@
 
 &emsp; **Agilidade:** Busca uma solução "One-Click". Se for burocrático, ele desiste.
 
+&emsp; A análise profunda da jornada de Lucas Oliveira revela que a educação financeira tradicional falhou com ele não por falta de conteúdo, mas por inadequação de formato. Lucas não precisa de mais informações sobre juros compostos; ele precisa de uma intervenção comportamental que compita com os estímulos de dopamina que o levaram ao endividamento.
 
-&emsp; A análise profunda da jornada de Lucas S. Oliveira revela que a educação financeira tradicional falhou com ele não por falta de conteúdo, mas por inadequação de formato. Lucas não precisa de mais informações sobre juros compostos; ele precisa de uma intervenção comportamental que compita com os estímulos de dopamina que o levaram ao endividamento.
 &emsp; Em essência, a solução não deve tentar mudar quem Lucas é; ela muda as regras do jogo para que as características naturais de Lucas (competitividade, agilidade e busca por recompensa) joguem a favor do seu patrimônio, e não contra ele.
+
 &emsp; Em suma, a jornada de Lucas justifica a abordagem e a arquitetura de intervenção do XP Control. O projeto deve, portanto, canalizar a busca por dopamina e recompensa imediata (que o levou ao risco) para a satisfação de resolver problemas estratégicos, guiando-o rumo à disciplina financeira e à fidelização com a XP Inc.
 
 ## <a name="objetivo"></a>1.3. Objetivo do Projeto
