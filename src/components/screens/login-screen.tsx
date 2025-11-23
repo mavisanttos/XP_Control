@@ -92,14 +92,23 @@ export default function LoginScreen({ onComplete, userProfile, setUserProfile, o
         </div>
 
         {/* Login Button */}
-        <button
-          onClick={handleLogin}
-          disabled={!formData.email || !formData.password}
-          className="w-full px-4 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed text-slate-950 rounded-lg transition-all font-bold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-emerald-500/50 neon-button"
-        >
-          Acessar
-          <ChevronRight size={20} />
-        </button>
+        <div className="flex justify-center">
+          <button
+            onClick={handleLogin}
+            disabled={!formData.email || !formData.password}
+            className="relative px-6 py-2.5 rounded-lg transition-all hover:scale-105 shadow-lg hover:shadow-emerald-500/50 group disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+          >
+            {/* Borda com gradiente */}
+            <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-emerald-500 to-purple-500 opacity-100 group-hover:from-emerald-600 group-hover:to-purple-600 transition-all" />
+            {/* Fundo transparente */}
+            <div className="absolute inset-[1px] rounded-lg bg-slate-950/90" />
+            {/* Texto */}
+            <span className="relative z-10 text-white font-bold flex items-center justify-center gap-2 text-sm">
+              Acessar
+              <ChevronRight size={18} />
+            </span>
+          </button>
+        </div>
 
         {/* Signup Link */}
         <div className="mt-6 text-center">

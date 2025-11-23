@@ -102,8 +102,15 @@ export default function Education({ userProfile, onProfileClick }: EducationProp
         <div className="premium-card border-emerald-500/30 bg-gradient-to-br from-emerald-500/10 to-slate-950">
           <p className="text-slate-200 mb-3 text-sm drop-shadow">Com base em sua situação (Devedor), recomendamos:</p>
           <h3 className="text-lg md:text-xl font-bold text-white mb-4">Como Negociar Dívidas</h3>
-          <button className="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold py-2 md:py-3 rounded transition-colors flex items-center justify-center gap-2 text-sm md:text-base">
-            Começar Curso <ArrowRight size={18} />
+          <button className="w-full relative py-2 md:py-3 rounded transition-all hover:scale-105 shadow-lg hover:shadow-emerald-500/50 group text-sm md:text-base">
+            {/* Borda com gradiente */}
+            <div className="absolute inset-0 rounded bg-gradient-to-r from-emerald-500 to-purple-500 opacity-100 group-hover:from-emerald-600 group-hover:to-purple-600 transition-all" />
+            {/* Fundo transparente */}
+            <div className="absolute inset-[1px] rounded bg-slate-950/90" />
+            {/* Texto */}
+            <span className="relative z-10 text-white font-bold flex items-center justify-center gap-2">
+              Começar Curso <ArrowRight size={18} />
+            </span>
           </button>
         </div>
       </div>
@@ -129,8 +136,13 @@ export default function Education({ userProfile, onProfileClick }: EducationProp
               </div>
               <h3 className="font-bold text-white mb-2 text-sm md:text-base">{course.title}</h3>
               <p className="text-xs md:text-sm text-slate-200 mb-4 drop-shadow">{course.description}</p>
-              <button className="w-full border border-slate-700 hover:border-emerald-500 text-emerald-500 font-semibold py-2 rounded transition-colors text-sm">
-                Acessar
+              <button className="w-full relative py-2 rounded transition-all hover:scale-105 shadow-lg hover:shadow-emerald-500/50 group text-sm">
+                {/* Borda com gradiente - mais verde */}
+                <div className="absolute inset-0 rounded bg-gradient-to-r from-emerald-500 to-emerald-400 opacity-100 group-hover:from-emerald-600 group-hover:to-emerald-500 transition-all" />
+                {/* Fundo transparente */}
+                <div className="absolute inset-[1px] rounded bg-slate-950/90" />
+                {/* Texto */}
+                <span className="relative z-10 text-white font-semibold">Acessar</span>
               </button>
             </div>
           )

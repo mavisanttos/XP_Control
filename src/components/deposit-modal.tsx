@@ -94,9 +94,14 @@ export default function DepositModal({ isOpen, onClose, onDeposit, debtName, cur
             <button
               onClick={handleDepositClick}
               disabled={!amount || Number(amount) <= 0}
-              className="flex-1 px-4 py-3 bg-emerald-500 hover:bg-emerald-600 disabled:opacity-50 disabled:cursor-not-allowed text-slate-950 rounded-lg transition-all font-bold hover:shadow-lg hover:shadow-emerald-500/50 neon-button"
+              className="flex-1 relative px-4 py-3 rounded-lg transition-all hover:scale-105 shadow-lg hover:shadow-emerald-500/50 group disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
             >
-              Depositar
+              {/* Borda com gradiente */}
+              <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-emerald-500 to-purple-500 opacity-100 group-hover:from-emerald-600 group-hover:to-purple-600 transition-all" />
+              {/* Fundo transparente */}
+              <div className="absolute inset-[1px] rounded-lg bg-slate-950/90" />
+              {/* Texto */}
+              <span className="relative z-10 text-white font-bold">Depositar</span>
             </button>
           </div>
         </div>

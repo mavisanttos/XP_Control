@@ -155,13 +155,20 @@ export default function SignupScreen({ onComplete, userProfile, setUserProfile, 
         </div>
 
         {/* Navigation */}
-        <div className="flex gap-3 mb-6">
+        <div className="flex justify-center gap-3 mb-6">
           <button
             onClick={handleBack}
-            className="flex-1 px-4 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-lg transition-all font-medium hover:shadow-lg hover:shadow-slate-700/50 neon-button flex items-center justify-center gap-2"
+            className="relative px-6 py-2.5 rounded-lg transition-all hover:scale-105 shadow-lg hover:shadow-slate-700/50 group"
           >
-            <ChevronLeft size={20} />
-            Voltar
+            {/* Borda com gradiente - cinza */}
+            <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-slate-600 to-slate-700 opacity-100 group-hover:from-slate-700 group-hover:to-slate-800 transition-all" />
+            {/* Fundo transparente */}
+            <div className="absolute inset-[1px] rounded-lg bg-slate-950/90" />
+            {/* Texto */}
+            <span className="relative z-10 text-white font-bold flex items-center justify-center gap-2 text-sm">
+              <ChevronLeft size={18} />
+              Voltar
+            </span>
           </button>
           <button
             onClick={handleNext}
@@ -170,10 +177,17 @@ export default function SignupScreen({ onComplete, userProfile, setUserProfile, 
                 ? !formData.email || !formData.password || formData.confirmPassword !== formData.password
                 : !formData.name || !formData.birthDate || !formData.income
             }
-            className="flex-1 px-4 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed text-slate-950 rounded-lg transition-all font-bold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-emerald-500/50 neon-button"
+            className="relative px-6 py-2.5 rounded-lg transition-all hover:scale-105 shadow-lg hover:shadow-emerald-500/50 group disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
           >
-            {step === 2 ? "Continuar" : "Próximo"}
-            <ChevronRight size={20} />
+            {/* Borda com gradiente */}
+            <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-emerald-500 to-purple-500 opacity-100 group-hover:from-emerald-600 group-hover:to-purple-600 transition-all" />
+            {/* Fundo transparente */}
+            <div className="absolute inset-[1px] rounded-lg bg-slate-950/90" />
+            {/* Texto */}
+            <span className="relative z-10 text-white font-bold flex items-center justify-center gap-2 text-sm">
+              {step === 2 ? "Continuar" : "Próximo"}
+              <ChevronRight size={18} />
+            </span>
           </button>
         </div>
 

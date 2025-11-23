@@ -38,7 +38,10 @@ export default function Debts({ onAddDebt, userProfile, onProfileClick }: DebtsP
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isDepositModalOpen, setIsDepositModalOpen] = useState(false)
   const [selectedDebtIndex, setSelectedDebtIndex] = useState<number | null>(null)
-  const [cdbBalance, setCdbBalance] = useState(200)
+  const [showCdbDetails, setShowCdbDetails] = useState(false)
+  
+  // Calcular o total guardado nas dívidas
+  const totalSavings = debts.reduce((sum, debt) => sum + (debt.savings || 0), 0)
 
   const handleAddDebt = (newDebt: DebtItem) => {
     setDebts([...debts, newDebt])
@@ -53,9 +56,6 @@ export default function Debts({ onAddDebt, userProfile, onProfileClick }: DebtsP
           : debt
       ))
       setSelectedDebtIndex(null)
-    } else {
-      // Depositar no cofrinho CDB geral
-      setCdbBalance(cdbBalance + amount)
     }
   }
 
@@ -133,6 +133,65 @@ export default function Debts({ onAddDebt, userProfile, onProfileClick }: DebtsP
         </div>
       </div>
 
+      {/* Cofre CDB */}
+      <div className="premium-card border-emerald-500/30 bg-gradient-to-br from-emerald-500/10 to-slate-950 mb-6 cursor-pointer hover:border-emerald-500/50 transition-all" onClick={() => setShowCdbDetails(!showCdbDetails)}>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <VaultIcon className="w-6 h-6 md:w-7 md:h-7 text-emerald-400" />
+            <div>
+              <p className="text-slate-200 text-xs md:text-sm drop-shadow">Cofre CDB</p>
+              <h2 className="text-xl md:text-2xl font-bold text-emerald-400 mt-1">
+                R$ {totalSavings.toFixed(2)}
+              </h2>
+            </div>
+          </div>
+          <div className="text-emerald-400">
+            {showCdbDetails ? "▼" : "▶"}
+          </div>
+        </div>
+      </div>
+
+      {/* Detalhes do Cofre CDB - Mostra dívidas com dinheiro */}
+      {showCdbDetails && (
+        <div className="premium-card border-emerald-500/20 bg-gradient-to-br from-emerald-500/5 to-slate-950 mb-6">
+          <h3 className="text-lg font-bold text-white mb-4">Dívidas com dinheiro adicionado</h3>
+          {debts.filter(d => (d.savings || 0) > 0).length > 0 ? (
+            <div className="space-y-3">
+              {debts
+                .filter(d => (d.savings || 0) > 0)
+                .map((debt, index) => (
+                  <div key={index} className="p-3 bg-slate-800/50 border border-slate-700 rounded-lg">
+                    <div className="flex items-center justify-between">
+                      <div className="flex-1">
+                        <p className="text-sm font-semibold text-white">{debt.name}</p>
+                        <p className="text-xs text-slate-400 mt-1">Juros: {debt.interest}%</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-sm font-bold text-emerald-400">R$ {(debt.savings || 0).toFixed(2)}</p>
+                        <p className="text-xs text-slate-400 mt-1">
+                          {((debt.savings || 0) / debt.value * 100).toFixed(1)}% da dívida
+                        </p>
+                      </div>
+                    </div>
+                    <div className="w-full bg-slate-700 rounded-full h-1.5 mt-2">
+                      <div 
+                        className="bg-emerald-500 h-full rounded-full transition-all"
+                        style={{ width: `${Math.min(((debt.savings || 0) / debt.value) * 100, 100)}%` }}
+                      />
+                    </div>
+                  </div>
+                ))}
+            </div>
+          ) : (
+            <div className="text-center py-6">
+              <VaultIcon className="w-12 h-12 text-slate-600 mx-auto mb-3" />
+              <p className="text-slate-400 text-sm">Nenhuma dívida possui dinheiro adicionado ainda</p>
+              <p className="text-slate-500 text-xs mt-2">Adicione dinheiro aos cofrinhos das dívidas para vê-las aqui</p>
+            </div>
+          )}
+        </div>
+      )}
+
       {/* Debts List */}
       <div className="mb-6">
         <h2 className="text-lg md:text-xl font-bold text-white mb-3">Dívidas Bancárias</h2>
@@ -180,46 +239,30 @@ export default function Debts({ onAddDebt, userProfile, onProfileClick }: DebtsP
                   <div className="flex gap-2">
                     <button
                       onClick={() => handleOpenDebtSavings(debtIndex)}
-                      className="flex-1 bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-emerald-500/50 text-emerald-400 hover:text-emerald-300 font-bold py-2 md:py-3 rounded transition-all text-sm md:text-base flex items-center justify-center gap-2"
+                      className="flex-1 relative py-2 md:py-3 rounded transition-all hover:scale-105 shadow-lg hover:shadow-emerald-500/50 group text-sm md:text-base"
                     >
-                      <VaultIcon className="w-4 h-4" />
-                      {savings > 0 ? "Adicionar" : "Cofrinho"}
+                      {/* Borda com gradiente - mais verde */}
+                      <div className="absolute inset-0 rounded bg-gradient-to-r from-emerald-500 to-emerald-400 opacity-100 group-hover:from-emerald-600 group-hover:to-emerald-500 transition-all" />
+                      {/* Fundo transparente */}
+                      <div className="absolute inset-[1px] rounded bg-slate-950/90" />
+                      {/* Texto */}
+                      <span className="relative z-10 text-white font-bold flex items-center justify-center gap-2">
+                        <VaultIcon className="w-4 h-4" />
+                        {savings > 0 ? "Adicionar" : "Cofrinho"}
+                      </span>
                     </button>
-                    <button className="flex-1 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold py-2 md:py-3 rounded transition-all text-sm md:text-base hover:shadow-lg hover:shadow-emerald-500/50 neon-button">
-                      Pagar
+                    <button className="flex-1 relative py-2 md:py-3 rounded transition-all hover:scale-105 shadow-lg hover:shadow-emerald-500/50 group text-sm md:text-base">
+                      {/* Borda com gradiente */}
+                      <div className="absolute inset-0 rounded bg-gradient-to-r from-emerald-500 to-purple-500 opacity-100 group-hover:from-emerald-600 group-hover:to-purple-600 transition-all" />
+                      {/* Fundo transparente */}
+                      <div className="absolute inset-[1px] rounded bg-slate-950/90" />
+                      {/* Texto */}
+                      <span className="relative z-10 text-white font-bold">Pagar</span>
                     </button>
                   </div>
                 </div>
               )
             })}
-        </div>
-      </div>
-
-      {/* Savings Fund */}
-      <div className="mb-6">
-        <div className="flex items-center gap-2 md:gap-3 mb-3">
-          <VaultIcon className="w-5 h-5 md:w-6 md:h-6 text-emerald-500" />
-          <h2 className="text-lg md:text-xl font-bold text-white">Cofrinho CDB - Fundo de Quitação</h2>
-        </div>
-        <div className="premium-card border-emerald-500/30 bg-gradient-to-br from-emerald-500/10 to-slate-950">
-          <div className="grid grid-cols-2 gap-4 mb-4">
-            <div>
-              <p className="text-slate-200 text-xs md:text-sm drop-shadow">Saldo do Cofrinho</p>
-              <p className="text-xl md:text-2xl font-bold text-emerald-500 mt-1">R$ {cdbBalance.toFixed(2)}</p>
-            </div>
-            <div>
-              <p className="text-slate-200 text-xs md:text-sm drop-shadow">Rendimento</p>
-              <p className="text-xl md:text-2xl font-bold text-emerald-500 mt-1">
-                +R$ {(cdbBalance * 0.005).toFixed(2)}
-              </p>
-            </div>
-          </div>
-          <button
-            onClick={() => setIsDepositModalOpen(true)}
-            className="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold py-2 md:py-3 rounded transition-all text-sm md:text-base hover:shadow-lg hover:shadow-emerald-500/50 neon-button"
-          >
-            Depositar
-          </button>
         </div>
       </div>
 
@@ -269,10 +312,17 @@ export default function Debts({ onAddDebt, userProfile, onProfileClick }: DebtsP
                   
                   <button
                     onClick={() => handleOpenDebtSavings(debtIndex)}
-                    className="w-full bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-emerald-500/50 text-emerald-400 hover:text-emerald-300 font-bold py-2 md:py-3 rounded transition-all text-sm md:text-base flex items-center justify-center gap-2"
+                    className="w-full relative py-2 md:py-3 rounded transition-all hover:scale-105 shadow-lg hover:shadow-emerald-500/50 group text-sm md:text-base"
                   >
-                    <VaultIcon className="w-4 h-4" />
-                    {savings > 0 ? "Adicionar ao Cofrinho" : "Criar Cofrinho"}
+                    {/* Borda com gradiente - mais verde */}
+                    <div className="absolute inset-0 rounded bg-gradient-to-r from-emerald-500 to-emerald-400 opacity-100 group-hover:from-emerald-600 group-hover:to-emerald-500 transition-all" />
+                    {/* Fundo transparente */}
+                    <div className="absolute inset-[1px] rounded bg-slate-950/90" />
+                    {/* Texto */}
+                    <span className="relative z-10 text-white font-bold flex items-center justify-center gap-2">
+                      <VaultIcon className="w-4 h-4" />
+                      {savings > 0 ? "Adicionar ao Cofrinho" : "Criar Cofrinho"}
+                    </span>
                   </button>
                 </div>
               )

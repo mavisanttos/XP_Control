@@ -61,10 +61,17 @@ export default function VictoryScreen({ userProfile, onContinue }: VictoryScreen
         {/* CTA Button */}
         <button
           onClick={onContinue}
-          className="w-full py-3 md:py-4 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-slate-950 rounded-lg font-bold transition-all flex items-center justify-center gap-2 text-base md:text-lg mt-4"
+          className="w-full relative py-3 md:py-4 rounded-lg transition-all hover:scale-105 shadow-lg hover:shadow-emerald-500/50 group text-base md:text-lg mt-4"
         >
-          Explorar Investimentos
-          <ChevronRight size={24} />
+          {/* Borda com gradiente */}
+          <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-emerald-500 to-purple-500 opacity-100 group-hover:from-emerald-600 group-hover:to-purple-600 transition-all" />
+          {/* Fundo transparente */}
+          <div className="absolute inset-[1px] rounded-lg bg-slate-950/90" />
+          {/* Texto */}
+          <span className="relative z-10 text-white font-bold flex items-center justify-center gap-2">
+            Explorar Investimentos
+            <ChevronRight size={24} />
+          </span>
         </button>
       </div>
     </div>

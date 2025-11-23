@@ -173,9 +173,14 @@ export default function Games({ userProfile, onVictory, onProfileClick }: GamesP
                 {/* Botão de fechar */}
                 <button
                   onClick={handleCloseCompletionModal}
-                  className="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold py-3 md:py-4 rounded-lg transition-all text-base md:text-lg hover:shadow-lg hover:shadow-emerald-500/50"
+                  className="w-full relative py-3 md:py-4 rounded-lg transition-all hover:scale-105 shadow-lg hover:shadow-emerald-500/50 group text-base md:text-lg"
                 >
-                  Continuar
+                  {/* Borda com gradiente */}
+                  <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-emerald-500 to-purple-500 opacity-100 group-hover:from-emerald-600 group-hover:to-purple-600 transition-all" />
+                  {/* Fundo transparente */}
+                  <div className="absolute inset-[1px] rounded-lg bg-slate-950/90" />
+                  {/* Texto */}
+                  <span className="relative z-10 text-white font-bold">Continuar</span>
                 </button>
               </div>
             </div>
@@ -265,9 +270,14 @@ export default function Games({ userProfile, onVictory, onProfileClick }: GamesP
               </p>
               <button
                 onClick={handleGameComplete}
-                className="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold py-2 md:py-3 rounded-lg transition-colors"
+                className="w-full relative py-2 md:py-3 rounded-lg transition-all hover:scale-105 shadow-lg hover:shadow-emerald-500/50 group"
               >
-                Confirmar e Ganhar Recompensas
+                {/* Borda com gradiente */}
+                <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-emerald-500 to-purple-500 opacity-100 group-hover:from-emerald-600 group-hover:to-purple-600 transition-all" />
+                {/* Fundo transparente */}
+                <div className="absolute inset-[1px] rounded-lg bg-slate-950/90" />
+                {/* Texto */}
+                <span className="relative z-10 text-white font-bold">Confirmar e Ganhar Recompensas</span>
               </button>
             </div>
           )}
@@ -330,9 +340,14 @@ export default function Games({ userProfile, onVictory, onProfileClick }: GamesP
               {/* Botão de fechar */}
               <button
                 onClick={handleCloseCompletionModal}
-                className="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold py-3 md:py-4 rounded-lg transition-all text-base md:text-lg hover:shadow-lg hover:shadow-emerald-500/50"
+                className="w-full relative py-3 md:py-4 rounded-lg transition-all hover:scale-105 shadow-lg hover:shadow-emerald-500/50 group text-base md:text-lg"
               >
-                Continuar
+                {/* Borda com gradiente */}
+                <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-emerald-500 to-purple-500 opacity-100 group-hover:from-emerald-600 group-hover:to-purple-600 transition-all" />
+                {/* Fundo transparente */}
+                <div className="absolute inset-[1px] rounded-lg bg-slate-950/90" />
+                {/* Texto */}
+                <span className="relative z-10 text-white font-bold">Continuar</span>
               </button>
             </div>
           </div>
@@ -420,31 +435,41 @@ export default function Games({ userProfile, onVictory, onProfileClick }: GamesP
         </p>
         <button
           onClick={() => setActiveGame("reigns")}
-          className="w-full bg-purple-500 hover:bg-purple-600 text-slate-950 font-bold py-2 md:py-3 rounded-lg transition-colors text-sm md:text-base"
+          className="w-full relative py-2 md:py-3 rounded-lg transition-all hover:scale-105 shadow-lg hover:shadow-purple-500/50 group text-sm md:text-base"
         >
-          Jogar Agora
+          {/* Borda com gradiente */}
+          <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-purple-500 to-emerald-500 opacity-100 group-hover:from-purple-600 group-hover:to-emerald-600 transition-all" />
+          {/* Fundo transparente */}
+          <div className="absolute inset-[1px] rounded-lg bg-slate-950/90" />
+          {/* Texto */}
+          <span className="relative z-10 text-white font-bold">Jogar Agora</span>
         </button>
       </div>
 
-      {/* Game 1: Strategy */}
-      <div className="premium-card border-emerald-500/30 bg-gradient-to-br from-emerald-500/10 to-slate-950 mb-4 relative z-20 backdrop-blur-sm">
-        <div className="flex items-start justify-between mb-4">
-          <div className="flex-1">
-            <h2 className="text-xl font-bold text-white">Estratégia de Resgate</h2>
-            <p className="text-sm text-slate-400 mt-1">Simulador de alocação inteligente</p>
-          </div>
-          <VaultIcon className="text-emerald-500 flex-shrink-0 w-6 h-6" />
-        </div>
-        <p className="text-slate-300 mb-4 text-sm">
-          Cenário: Você tem R$ 400. Distribua entre dívidas e maximize economia!
-        </p>
-        <button
-          onClick={() => setActiveGame("strategy")}
-          className="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold py-2 md:py-3 rounded-lg transition-colors text-sm md:text-base"
-        >
-          Jogar Agora
-        </button>
-      </div>
+       {/* Game 1: Strategy */}
+       <div className="premium-card border-emerald-500/30 bg-gradient-to-br from-emerald-500/10 to-slate-950 mb-4 relative z-20 backdrop-blur-sm">
+         <div className="flex items-start justify-between mb-4">
+           <div className="flex-1">
+             <h2 className="text-xl font-bold text-white">Estratégia de Resgate</h2>
+             <p className="text-sm text-slate-400 mt-1">Simulador de alocação inteligente</p>
+           </div>
+           <VaultIcon className="text-emerald-500 flex-shrink-0 w-6 h-6" />
+         </div>
+         <p className="text-slate-300 mb-4 text-sm">
+           Distribua recursos entre dívidas considerando taxas de juros e maximize sua economia financeira.
+         </p>
+         <button
+           onClick={() => setActiveGame("strategy")}
+           className="w-full relative py-2 md:py-3 rounded-lg transition-all hover:scale-105 shadow-lg hover:shadow-emerald-500/50 group text-sm md:text-base"
+         >
+           {/* Borda com gradiente */}
+           <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-emerald-500 to-purple-500 opacity-100 group-hover:from-emerald-600 group-hover:to-purple-600 transition-all" />
+           {/* Fundo transparente */}
+           <div className="absolute inset-[1px] rounded-lg bg-slate-950/90" />
+           {/* Texto */}
+           <span className="relative z-10 text-white font-bold">Jogar Agora</span>
+         </button>
+       </div>
 
       {/* Game 2: Investments - Locked */}
       <div className="premium-card opacity-60 border-slate-700 relative z-20 backdrop-blur-sm">

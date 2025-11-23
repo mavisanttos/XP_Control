@@ -110,9 +110,14 @@ export default function Dashboard({ userProfile, onNavigate, debtsCovered, onLog
           <p className="text-slate-200 mb-4 text-sm md:text-base drop-shadow">Otimize seus recursos para ganhar bônus especiais</p>
           <button
             onClick={() => onNavigate("games")}
-            className="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold py-2 md:py-3 rounded-lg transition-colors text-sm md:text-base"
+            className="w-full relative py-2 md:py-3 rounded-lg transition-all hover:scale-105 shadow-lg hover:shadow-emerald-500/50 group text-sm md:text-base"
           >
-            Iniciar Jogo 1: Estratégia
+            {/* Borda com gradiente */}
+            <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-emerald-500 to-purple-500 opacity-100 group-hover:from-emerald-600 group-hover:to-purple-600 transition-all" />
+            {/* Fundo transparente */}
+            <div className="absolute inset-[1px] rounded-lg bg-slate-950/90" />
+            {/* Texto */}
+            <span className="relative z-10 text-white font-bold">Iniciar Jogo 1: Estratégia</span>
           </button>
         </div>
 

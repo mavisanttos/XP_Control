@@ -51,9 +51,16 @@ export default function SplashScreen({ onComplete }: SplashScreenProps) {
         {!isLoading && (
           <button
             onClick={handleClick}
-            className="mt-8 bg-gradient-to-r from-emerald-500 to-purple-500 hover:from-emerald-600 hover:to-purple-600 text-white font-bold px-8 py-3 rounded-lg transition-all hover:scale-105 shadow-lg hover:shadow-emerald-500/50"
+            className="mt-8 relative px-8 py-3 rounded-lg transition-all hover:scale-105 shadow-lg hover:shadow-emerald-500/50 group"
           >
-            Clique para iniciar
+            {/* Borda com gradiente */}
+            <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-emerald-500 to-purple-500 opacity-100 group-hover:from-emerald-600 group-hover:to-purple-600 transition-all" />
+            {/* Fundo transparente */}
+            <div className="absolute inset-[1px] rounded-lg bg-slate-950/90" />
+            {/* Texto */}
+            <span className="relative z-10 text-white font-bold text-sm md:text-base">
+              Clique para iniciar
+            </span>
           </button>
         )}
 
