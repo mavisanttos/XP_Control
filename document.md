@@ -53,20 +53,46 @@
 ## <a name="persona"></a>1.2. Persona
 
 &emsp; A persona é uma representação semifictícia do nosso usuário-alvo ideal (Geração Z entre 18 e 30 anos), criada a partir da coleta e análise de dados. Ela serve como um guia fundamental para orientar as decisões de design, usabilidade e, principalmente, a didática do produto.
-
 &emsp; A importância da persona Lucas para o projeto reside no fato de que sua espiral de dívida, que começa com o consumo compulsivo e é agravada pela busca por ganhos rápidos em plataformas de aposta, valida diretamente a necessidade dos mecanismos mais inovadores do XP Control. Ao focar na sua dor específica, garantimos que os recursos ofertados sejam não apenas tecnicamente possíveis, mas didaticamente relevantes.
 
-COLOCAR A PERSONA NO TEMPLATE E ESTRUTURAR MELHOR ELA
+<div align="center">
+  <sub>Figura 1 - Persona Lucas</sub><br>
+  <img src=assets\persona_lucas.png><br>
+  <sup>Fonte: Material produzido pelos autores (2025)</sup>
+</div>
 
-| Característica       | Detalhe                                                                                                         | Relevância para o Projeto                                                                                                                        |
-|----------------------|------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Nome**             | Lucas S. Oliveira                                                                                                | "Jovem adulto em formação, vivenciando a pressão social do ambiente universitário."                                                               |
-| **Idade**            | 21 anos — Estudante de Engenharia / Estagiário (Renda: R$ 1.800)                                                 | —                                                                                                                                                 |
-| **Situação**         | **Dívida total de R$ 8.200**. Começou com R$ 6.000 em compras compulsivas (eletrônicos e vestuário).            | O problema nasce no consumo de status. O sistema deve ajudá-lo a diferenciar desejo de necessidade e parar de fugir dos números.                 |
-| **O Ponto de Virada**| Ao ver a fatura crescer, buscou “soluções rápidas” e perdeu **R$ 2.200** em apostas online.                      | Esse comportamento de risco deve ser rastreado pelo sistema (via Open Finance + Jogo 1).                                                          |
-| **Comportamento**    | Busca prazer imediato, evita abrir o app do banco, sente vergonha e acredita que “sorte” resolverá seus problemas.| O Assistente Virtual precisa ser proativo. O Jogo 1 transforma o vício em sorte em habilidade estratégica.                                        |
-| **Objetivo**         | Quitar dívidas em 12 meses, recuperar a confiança financeira e se tornar um investidor disciplinado usando a XP. | A jornada do **XP Control** deve guiá-lo de endividado → disciplinado → investidor.                                                              |
 
+
+&emsp; **Biografia**
+ &emsp; Lucas é um jovem de 21 anos da cidade de São paulo e é um nativo digital clássico. Cresceu com a internet na palma da mão e moldou sua visão de mundo através das redes sociais, onde a aparência de sucesso é a moeda de troca social.
+
+ &emsp; No início da faculdade, começou a vida financeira de forma desorganizada: o primeiro cartão de crédito foi usado para parcelar um iPhone e roupas de marca para se enquadrar no grupo. Sem controle, o salário de estagiário logo foi engolido pelas parcelas.
+
+ &emsp; **O Ponto de Virada (A Crise):**
+ &emsp; Ao ver a fatura do cartão superar sua renda mensal, Lucas sentiu o pânico. Em vez de cortar gastos, buscou uma "solução mágica". Influenciado por vídeos de "Green" no TikTok, começou a fazer apostas esportivas (Bets) na esperança de dobrar seu dinheiro rápido e quitar a dívida.
+ &emsp; O resultado foi catastrófico: perdeu muito dinheiro reservado para despesas básicas e entrou no Cheque Especial. Hoje, vive um ciclo de ansiedade, negação e medo de ser descoberto.
+
+
+**Dores & Frustrações (O Problema)**
+
+ &emsp; **Negação Financeira:** Sente tanta vergonha e ansiedade que evita abrir o aplicativo do banco. Não sabe exatamente quanto deve, pois tem medo de encarar o número.
+
+&emsp; **Medo Social (Reputação):** Seu maior pesadelo não é a dívida em si, mas a vergonha pública. Teme que o cartão seja recusado em um encontro ou que seus pais descubram o "Nome Sujo".
+
+&emsp; **Tédio com o Tradicional:** Acha planilhas de Excel e vídeos de educação financeira de 40 minutos insuportavelmente chatos e lentos.
+
+
+**Desejos & Motivações (A Solução Ideal)**
+
+&emsp; **Dopamina Rápida:** Seu cérebro é viciado em recompensas imediatas. Ele precisa sentir que está "ganhando" algo hoje, não daqui a 30 anos.
+
+&emsp; **Redenção Heroica:** Sonha em dar a volta por cima e se tornar o "Investidor de Sucesso" que vê no Instagram. Quer provar que é esperto, apenas estava "jogando o jogo errado".
+
+&emsp; **Agilidade:** Busca uma solução "One-Click". Se for burocrático, ele desiste.
+
+
+&emsp; A análise profunda da jornada de Lucas S. Oliveira revela que a educação financeira tradicional falhou com ele não por falta de conteúdo, mas por inadequação de formato. Lucas não precisa de mais informações sobre juros compostos; ele precisa de uma intervenção comportamental que compita com os estímulos de dopamina que o levaram ao endividamento.
+&emsp; Em essência, a solução não deve tentar mudar quem Lucas é; ela muda as regras do jogo para que as características naturais de Lucas (competitividade, agilidade e busca por recompensa) joguem a favor do seu patrimônio, e não contra ele.
 &emsp; Em suma, a jornada de Lucas justifica a abordagem e a arquitetura de intervenção do XP Control. O projeto deve, portanto, canalizar a busca por dopamina e recompensa imediata (que o levou ao risco) para a satisfação de resolver problemas estratégicos, guiando-o rumo à disciplina financeira e à fidelização com a XP Inc.
 
 ## <a name="objetivo"></a>1.3. Objetivo do Projeto
