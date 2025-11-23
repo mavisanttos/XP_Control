@@ -12,6 +12,7 @@ interface DebtItem {
   value: number
   interest: number
   type: "bank" | "external"
+  savings?: number // Valor guardado no cofrinho para esta dívida
 }
 
 interface UserProfile {
@@ -30,12 +31,13 @@ interface DebtsProps {
 
 export default function Debts({ onAddDebt, userProfile, onProfileClick }: DebtsProps) {
   const [debts, setDebts] = useState<DebtItem[]>([
-    { name: "Cartão de Crédito", value: 2500, interest: 14, type: "bank" },
-    { name: "Empréstimo Pessoal", value: 5000, interest: 2, type: "bank" },
-    { name: "Loja de Eletrônicos", value: 800, interest: 10, type: "external" },
+    { name: "Cartão de Crédito", value: 2500, interest: 14, type: "bank", savings: 0 },
+    { name: "Empréstimo Pessoal", value: 5000, interest: 2, type: "bank", savings: 0 },
+    { name: "Loja de Eletrônicos", value: 800, interest: 10, type: "external", savings: 0 },
   ])
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isDepositModalOpen, setIsDepositModalOpen] = useState(false)
+  const [selectedDebtIndex, setSelectedDebtIndex] = useState<number | null>(null)
   const [cdbBalance, setCdbBalance] = useState(200)
 
   const handleAddDebt = (newDebt: DebtItem) => {
@@ -43,7 +45,23 @@ export default function Debts({ onAddDebt, userProfile, onProfileClick }: DebtsP
   }
 
   const handleDeposit = (amount: number) => {
-    setCdbBalance(cdbBalance + amount)
+    if (selectedDebtIndex !== null) {
+      // Depositar no cofrinho da dívida específica
+      setDebts(debts.map((debt, index) => 
+        index === selectedDebtIndex 
+          ? { ...debt, savings: (debt.savings || 0) + amount }
+          : debt
+      ))
+      setSelectedDebtIndex(null)
+    } else {
+      // Depositar no cofrinho CDB geral
+      setCdbBalance(cdbBalance + amount)
+    }
+  }
+
+  const handleOpenDebtSavings = (debtIndex: number) => {
+    setSelectedDebtIndex(debtIndex)
+    setIsDepositModalOpen(true)
   }
 
   return (
@@ -121,22 +139,59 @@ export default function Debts({ onAddDebt, userProfile, onProfileClick }: DebtsP
         <div className="space-y-3">
           {debts
             .filter((d) => d.type === "bank")
-            .map((debt, i) => (
-              <div key={i} className="premium-card">
-                <div className="flex items-start justify-between mb-3">
-                  <div className="flex-1">
-                    <h3 className="font-bold text-white text-sm md:text-base">{debt.name}</h3>
-                    <p className="text-xs md:text-sm text-slate-200 drop-shadow">Juros: {debt.interest}%</p>
+            .map((debt, i) => {
+              const debtIndex = debts.findIndex(d => d === debt)
+              const savings = debt.savings || 0
+              const remaining = debt.value - savings
+              return (
+                <div key={i} className="premium-card">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex-1">
+                      <h3 className="font-bold text-white text-sm md:text-base">{debt.name}</h3>
+                      <p className="text-xs md:text-sm text-slate-200 drop-shadow">Juros: {debt.interest}%</p>
+                    </div>
+                    <span className="text-lg md:text-xl font-bold text-red-400 flex-shrink-0">
+                      R$ {debt.value.toFixed(2)}
+                    </span>
                   </div>
-                  <span className="text-lg md:text-xl font-bold text-red-400 flex-shrink-0">
-                    R$ {debt.value.toFixed(2)}
-                  </span>
+                  
+                  {/* Cofrinho da Dívida */}
+                  {savings > 0 && (
+                    <div className="mb-3 p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-lg">
+                      <div className="flex items-center justify-between mb-1">
+                        <div className="flex items-center gap-2">
+                          <VaultIcon className="w-4 h-4 text-emerald-400" />
+                          <p className="text-xs text-slate-200 drop-shadow">Cofrinho</p>
+                        </div>
+                        <p className="text-sm font-bold text-emerald-400">R$ {savings.toFixed(2)}</p>
+                      </div>
+                      <div className="w-full bg-slate-800 rounded-full h-1.5 mt-2">
+                        <div 
+                          className="bg-emerald-500 h-full rounded-full transition-all"
+                          style={{ width: `${Math.min((savings / debt.value) * 100, 100)}%` }}
+                        />
+                      </div>
+                      <p className="text-xs text-slate-400 mt-1">
+                        Restante: R$ {remaining.toFixed(2)}
+                      </p>
+                    </div>
+                  )}
+                  
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => handleOpenDebtSavings(debtIndex)}
+                      className="flex-1 bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-emerald-500/50 text-emerald-400 hover:text-emerald-300 font-bold py-2 md:py-3 rounded transition-all text-sm md:text-base flex items-center justify-center gap-2"
+                    >
+                      <VaultIcon className="w-4 h-4" />
+                      {savings > 0 ? "Adicionar" : "Cofrinho"}
+                    </button>
+                    <button className="flex-1 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold py-2 md:py-3 rounded transition-all text-sm md:text-base hover:shadow-lg hover:shadow-emerald-500/50 neon-button">
+                      Pagar
+                    </button>
+                  </div>
                 </div>
-                <button className="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-bold py-2 md:py-3 rounded transition-all text-sm md:text-base hover:shadow-lg hover:shadow-emerald-500/50 neon-button">
-                  Pagar com Desconto
-                </button>
-              </div>
-            ))}
+              )
+            })}
         </div>
       </div>
 
@@ -174,27 +229,67 @@ export default function Debts({ onAddDebt, userProfile, onProfileClick }: DebtsP
         <div className="space-y-3">
           {debts
             .filter((d) => d.type === "external")
-            .map((debt, i) => (
-              <div key={i} className="premium-card">
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <h3 className="font-bold text-white text-sm md:text-base">{debt.name}</h3>
-                    <p className="text-xs md:text-sm text-slate-200 drop-shadow">Adicionado manualmente</p>
+            .map((debt, i) => {
+              const debtIndex = debts.findIndex(d => d === debt)
+              const savings = debt.savings || 0
+              const remaining = debt.value - savings
+              return (
+                <div key={i} className="premium-card">
+                  <div className="flex items-start justify-between mb-3">
+                    <div className="flex-1">
+                      <h3 className="font-bold text-white text-sm md:text-base">{debt.name}</h3>
+                      <p className="text-xs md:text-sm text-slate-200 drop-shadow">Adicionado manualmente</p>
+                    </div>
+                    <span className="text-lg md:text-xl font-bold text-orange-400 flex-shrink-0">
+                      R$ {debt.value.toFixed(2)}
+                    </span>
                   </div>
-                  <span className="text-lg md:text-xl font-bold text-orange-400 flex-shrink-0">
-                    R$ {debt.value.toFixed(2)}
-                  </span>
+                  
+                  {/* Cofrinho da Dívida */}
+                  {savings > 0 && (
+                    <div className="mb-3 p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-lg">
+                      <div className="flex items-center justify-between mb-1">
+                        <div className="flex items-center gap-2">
+                          <VaultIcon className="w-4 h-4 text-emerald-400" />
+                          <p className="text-xs text-slate-200 drop-shadow">Cofrinho</p>
+                        </div>
+                        <p className="text-sm font-bold text-emerald-400">R$ {savings.toFixed(2)}</p>
+                      </div>
+                      <div className="w-full bg-slate-800 rounded-full h-1.5 mt-2">
+                        <div 
+                          className="bg-emerald-500 h-full rounded-full transition-all"
+                          style={{ width: `${Math.min((savings / debt.value) * 100, 100)}%` }}
+                        />
+                      </div>
+                      <p className="text-xs text-slate-400 mt-1">
+                        Restante: R$ {remaining.toFixed(2)}
+                      </p>
+                    </div>
+                  )}
+                  
+                  <button
+                    onClick={() => handleOpenDebtSavings(debtIndex)}
+                    className="w-full bg-slate-800 hover:bg-slate-700 border border-slate-700 hover:border-emerald-500/50 text-emerald-400 hover:text-emerald-300 font-bold py-2 md:py-3 rounded transition-all text-sm md:text-base flex items-center justify-center gap-2"
+                  >
+                    <VaultIcon className="w-4 h-4" />
+                    {savings > 0 ? "Adicionar ao Cofrinho" : "Criar Cofrinho"}
+                  </button>
                 </div>
-              </div>
-            ))}
+              )
+            })}
         </div>
       </div>
 
       <AddDebtModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} onAdd={handleAddDebt} />
       <DepositModal
         isOpen={isDepositModalOpen}
-        onClose={() => setIsDepositModalOpen(false)}
+        onClose={() => {
+          setIsDepositModalOpen(false)
+          setSelectedDebtIndex(null)
+        }}
         onDeposit={handleDeposit}
+        debtName={selectedDebtIndex !== null ? debts[selectedDebtIndex]?.name : undefined}
+        currentSavings={selectedDebtIndex !== null ? debts[selectedDebtIndex]?.savings || 0 : undefined}
       />
       </div>
     </div>

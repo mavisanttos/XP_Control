@@ -9,14 +9,18 @@ interface DepositModalProps {
   isOpen: boolean
   onClose: () => void
   onDeposit: (amount: number) => void
+  debtName?: string // Nome da dívida se for cofrinho específico
+  currentSavings?: number // Valor atual do cofrinho da dívida
 }
 
-export default function DepositModal({ isOpen, onClose, onDeposit }: DepositModalProps) {
+export default function DepositModal({ isOpen, onClose, onDeposit, debtName, currentSavings }: DepositModalProps) {
   const [amount, setAmount] = useState("")
+  const isDebtSavings = debtName !== undefined
 
   const handleDepositClick = () => {
     if (amount && Number(amount) > 0) {
-      onDeposit(Number(amount))
+      // amount está em centavos, converter para reais
+      onDeposit(Number(amount) / 100)
       setAmount("")
       onClose()
     }
@@ -43,7 +47,9 @@ export default function DepositModal({ isOpen, onClose, onDeposit }: DepositModa
     <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
       <div className="bg-slate-900 border border-slate-700 rounded-lg p-6 w-full max-w-sm">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-bold text-white">Depositar no Cofrinho</h2>
+          <h2 className="text-xl font-bold text-white">
+            {isDebtSavings ? `Cofrinho - ${debtName}` : "Depositar no Cofrinho"}
+          </h2>
           <button onClick={onClose} className="text-slate-400 hover:text-white transition-colors">
             <X size={20} />
           </button>
@@ -62,9 +68,19 @@ export default function DepositModal({ isOpen, onClose, onDeposit }: DepositModa
           </div>
 
           <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-4">
-            <p className="text-xs text-slate-400">Seu novo saldo seria:</p>
+            {isDebtSavings && currentSavings !== undefined && (
+              <div className="mb-3 pb-3 border-b border-slate-700">
+                <p className="text-xs text-slate-400">Saldo atual do cofrinho:</p>
+                <p className="text-base font-bold text-emerald-400 mt-1">
+                  R$ {currentSavings.toFixed(2)}
+                </p>
+              </div>
+            )}
+            <p className="text-xs text-slate-400">
+              {isDebtSavings ? "Novo saldo do cofrinho:" : "Seu novo saldo seria:"}
+            </p>
             <p className="text-lg font-bold text-emerald-500 mt-2">
-              R$ {(200 + (Number(amount) || 0) / 100).toFixed(2)}
+              R$ {((isDebtSavings ? (currentSavings || 0) : 200) + (Number(amount) || 0) / 100).toFixed(2)}
             </p>
           </div>
 

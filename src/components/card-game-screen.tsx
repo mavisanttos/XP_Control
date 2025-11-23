@@ -70,12 +70,13 @@ const CARDS: CardData[] = [
 ]
 
 interface CardGameScreenProps {
-  onComplete: () => void
+  onComplete: (finalScore: number, correctAnswers: number) => void
 }
 
 export default function CardGameScreen({ onComplete }: CardGameScreenProps) {
   const [currentCardIndex, setCurrentCardIndex] = useState(0)
   const [score, setScore] = useState(0)
+  const [correctAnswers, setCorrectAnswers] = useState(0)
   const [animatingOut, setAnimatingOut] = useState(false)
   const [direction, setDirection] = useState<"left" | "right" | null>(null)
   const [dragX, setDragX] = useState(0)
@@ -129,7 +130,14 @@ export default function CardGameScreen({ onComplete }: CardGameScreenProps) {
     setDirection(isRight ? "right" : "left")
 
     const newScore = isRight ? currentCard.rightScore : currentCard.leftScore
-    setScore(score + newScore)
+    const isCorrect = newScore > (isRight ? currentCard.leftScore : currentCard.rightScore)
+    const updatedScore = score + newScore
+    const updatedCorrectAnswers = isCorrect ? correctAnswers + 1 : correctAnswers
+    
+    setScore(updatedScore)
+    if (isCorrect) {
+      setCorrectAnswers(updatedCorrectAnswers)
+    }
 
     setTimeout(() => {
       if (currentCardIndex < CARDS.length - 1) {
@@ -137,7 +145,8 @@ export default function CardGameScreen({ onComplete }: CardGameScreenProps) {
         setAnimatingOut(false)
         setDirection(null)
       } else {
-        onComplete()
+        // Última carta - chamar onComplete com os valores atualizados
+        onComplete(updatedScore, updatedCorrectAnswers)
       }
     }, 500)
   }
@@ -147,6 +156,17 @@ export default function CardGameScreen({ onComplete }: CardGameScreenProps) {
 
   return (
     <div className="w-full flex flex-col items-center justify-center min-h-[600px] md:min-h-[700px] relative z-10">
+      {/* Exibição de Pontuação */}
+      <div className="mb-6 text-center relative z-20">
+        <div>
+          <p className="text-slate-200 text-sm drop-shadow">Pontuação</p>
+          <p className="text-2xl md:text-3xl font-bold text-emerald-400 drop-shadow mt-1">{Math.max(0, score)}</p>
+        </div>
+        <p className="text-slate-400 text-xs mt-2 drop-shadow">
+          Carta {currentCardIndex + 1} de {CARDS.length}
+        </p>
+      </div>
+
       <div className="w-full max-w-sm px-4">
         <div
           ref={containerRef}
