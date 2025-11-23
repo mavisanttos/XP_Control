@@ -62,29 +62,25 @@
   <sup>Fonte: Material produzido pelos autores (2025)</sup>
 </div>
 
-
-
-&emsp; **Biografia**
+**Biografia** <br>
  &emsp; Lucas é um jovem de 21 anos da cidade de São paulo e é um nativo digital clássico. Cresceu com a internet na palma da mão e moldou sua visão de mundo através das redes sociais, onde a aparência de sucesso é a moeda de troca social.
 
  &emsp; No início da faculdade, começou a vida financeira de forma desorganizada: o primeiro cartão de crédito foi usado para parcelar um iPhone e roupas de marca para se enquadrar no grupo. Sem controle, o salário de estagiário logo foi engolido pelas parcelas.
 
- &emsp; **O Ponto de Virada (A Crise):**
+ **O Ponto de Virada (A Crise)** <br>
  &emsp; Ao ver a fatura do cartão superar sua renda mensal, Lucas sentiu o pânico. Em vez de cortar gastos, buscou uma "solução mágica". Influenciado por vídeos de "Green" no TikTok, começou a fazer apostas esportivas (Bets) na esperança de dobrar seu dinheiro rápido e quitar a dívida.
+
  &emsp; O resultado foi catastrófico: perdeu muito dinheiro reservado para despesas básicas e entrou no Cheque Especial. Hoje, vive um ciclo de ansiedade, negação e medo de ser descoberto.
 
 
-**Dores & Frustrações (O Problema)**
-
+**Dores & Frustrações (O Problema)** <br>
  &emsp; **Negação Financeira:** Sente tanta vergonha e ansiedade que evita abrir o aplicativo do banco. Não sabe exatamente quanto deve, pois tem medo de encarar o número.
 
 &emsp; **Medo Social (Reputação):** Seu maior pesadelo não é a dívida em si, mas a vergonha pública. Teme que o cartão seja recusado em um encontro ou que seus pais descubram o "Nome Sujo".
 
 &emsp; **Tédio com o Tradicional:** Acha planilhas de Excel e vídeos de educação financeira de 40 minutos insuportavelmente chatos e lentos.
 
-
-**Desejos & Motivações (A Solução Ideal)**
-
+**Desejos & Motivações (A Solução Ideal)** <br>
 &emsp; **Dopamina Rápida:** Seu cérebro é viciado em recompensas imediatas. Ele precisa sentir que está "ganhando" algo hoje, não daqui a 30 anos.
 
 &emsp; **Redenção Heroica:** Sonha em dar a volta por cima e se tornar o "Investidor de Sucesso" que vê no Instagram. Quer provar que é esperto, apenas estava "jogando o jogo errado".
