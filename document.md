@@ -247,9 +247,13 @@ Este é o ponto de conversão e a recompensa máxima pela disciplina: quando a �
 
 &emsp; O protótipo de alta fidelidade representa visualmente toda a experiência do usuário dentro do XP Control, permitindo observar a jornada completa desde o primeiro contato com o aplicativo até as funcionalidades avançadas de gestão financeira e gamificação. Ele é um reflexo direto da solução final proposta, demonstrando as interações, padrões de navegação e ramificações possíveis que moldam a experiência do usuário na plataforma.
 
-&emsp; Para facilitar a leitura do fluxo de telas, foi adotado um sistema de cores nas setas de navegação, onde cada cor representa um tipo específico de ação, jornada ou categoria funcional dentro do aplicativo. Essa legenda é essencial para compreender rapidamente como o usuário navega entre as telas e como cada parte do sistema se conecta.
+&emsp; Para facilitar a leitura do fluxo de telas, foi adotado um sistema de cores nas setas de navegação, onde cada cor representa um tipo específico de ação, jornada ou categoria funcional dentro do aplicativo. Essa legenda é essencial para compreender rapidamente como o usuário navega entre as telas e como cada parte do sistema se conecta. Visualize nosso protótipo através do diagrama abaixo ou acesse o link para o Figma do esquema.
+
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/board/aYmf3lZ6Fw62MZ1mKbCohB/XP-CONTROL---FLUXO-DE-TELAS?node-id=0-1&embed-host=share" allowfullscreen></iframe>
 
 🔗 **Link do Protótipo no Figma**: [FigJam!](https://www.figma.com/board/aYmf3lZ6Fw62MZ1mKbCohB/XP-CONTROL---FLUXO-DE-TELAS?node-id=0-1&t=RgwXkpxTF2yCAzV6-1)
+
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/board/aYmf3lZ6Fw62MZ1mKbCohB/XP-CONTROL---FLUXO-DE-TELAS?node-id=0-1&embed-host=share" allowfullscreen></iframe>
 
 ---
 
@@ -348,9 +352,7 @@ Estão presentes principalmente nas telas de cadastro e em modais secundários.
 
 ---
 
-### Conclusão
-
-O fluxo apresentado no protótipo do XP Control representa uma experiência **completa, modular e altamente guiada**. As setas coloridas permitem identificar, de forma rápida e intuitiva, como o usuário transita entre diferentes partes do sistema, desde o onboardin* e a triagem financeira, até a gamificação e educação contínua. Esta seção serve como referência principal para times de design, desenvolvimento e testes, garantindo alinhamento durante todas as fases do projeto.
+O fluxo apresentado no protótipo do XP Control representa uma experiência **completa, modular e altamente guiada**. As setas coloridas permitem identificar, de forma rápida e intuitiva, como o usuário transita entre diferentes partes do sistema, desde o onboarding e a triagem financeira, até a gamificação e educação contínua. Esta seção serve como referência principal para times de design, desenvolvimento e testes, garantindo alinhamento durante todas as fases do projeto.
 
 # <a name="c3"></a>3. Arquitetura e Implementação
 
