@@ -230,6 +230,8 @@ Este é o ponto de conversão e a recompensa máxima pela disciplina: quando a �
 
 - Visualização Estratégica (Simulador): O Simulador de Estratégia de Resgate apresenta visualmente as dívidas e os fluxos de caixa, permitindo que o usuário arraste e aloque o dinheiro para a opção matematicamente mais vantajosa, transformando a matemática complexa em uma interface de alocação estratégica.
 
+- Simulação de Mercado (Jogo 2): Após o desbloqueio, a interface do Jogo 2 apresenta um painel de simulação limpo e intuitivo de ativos (renda fixa e variável). O sistema traduz o sucesso nas operações simuladas em recompensas visuais claras que se materializam em custódia real em CDBs XP, reforçando visualmente a conexão entre estratégia e ganho financeiro de longo prazo.
+
 **3. Aba Dívidas (Transparência e Ação)**
 
 &emsp; A interface aqui é desenhada para converter o diagnóstico em ação prática.
@@ -680,7 +682,7 @@ Splash → Login → Signup → Open Finance → Triage → Dashboard
 
 **Modelo de Negócio: Conversão de Passivo em Ativo**
 
-&emsp; O XP Control opera sob um modelo de negócio único no mercado brasileiro: transformar um público tradicionalmente visto como de alto risco (jovens endividados) em uma base de clientes qualificados e engajados. O modelo funciona como um funil de conversão em três estágios:
+&emsp; O XP Control opera sob um modelo de negócio que visa transformar um público tradicionalmente visto como de alto risco (jovens endividados) em uma base de clientes qualificados e engajados. O modelo funciona como um funil de conversão em três estágios:
 
 **1. Aquisição e Engajamento (Fase de Resgate)**
 - **Custo de Aquisição (CAC) Reduzido**: O XP Control atrai usuários através de uma proposta de valor clara e imediata (resgate financeiro), diferentemente de campanhas tradicionais de investimentos que competem com múltiplos players. A natureza viral da gamificação e o compartilhamento de conquistas podem reduzir significativamente o CAC comparado a métodos tradicionais de marketing digital.
