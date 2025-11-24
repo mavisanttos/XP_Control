@@ -20,6 +20,7 @@
     - [2.3.1. Gamificação Bimodal](#funcionalidades-chave)
     - [2.3.2. Metodologia do Jogo (Alocação Estratégica)](#funcionalidades-chave)
 - [2.4. Funcionalidades da Interface](#funcionalidades-interface)
+- [2.5. Protótipo de Alta Fidelidade](#prototipo-alta-fidelidade)
 
 [3. Arquitetura e Implementação](#c3)
 - [3.1. Arquitetura do Sistema](#arquitetura)
@@ -241,6 +242,115 @@ Este é o ponto de conversão e a recompensa máxima pela disciplina: quando a �
 - Cofrinho Integrado: O botão de "Guardar Dinheiro" (que ativa o Cofrinho Inteligente / CDB XP) é exibido ao lado de cada dívida, incentivando a aplicação imediata do recurso.
 
 &emsp; O design da interface do XP Control é um componente metodológico fundamental. Ele usa o reforço positivo (XP Coins, Barras de Progresso) e o incentivo aspiracional (Modo Investidor) para criar um ambiente de alta motivação. Ao transformar números complexos em métricas de jogo simples e engajadoras, a interface garante que o usuário Geração Z permaneça focado na disciplina, acelerando sua conversão de devedor em investidor qualificado para a XP Inc.
+
+## <a name="prototipo-alta-fidelidade"></a>2.5. Protótipo de Alta Fidelidade
+
+&emsp; O protótipo de alta fidelidade representa visualmente toda a experiência do usuário dentro do XP Control, permitindo observar a jornada completa desde o primeiro contato com o aplicativo até as funcionalidades avançadas de gestão financeira e gamificação. Ele é um reflexo direto da solução final proposta, demonstrando as interações, padrões de navegação e ramificações possíveis que moldam a experiência do usuário na plataforma.
+
+&emsp; Para facilitar a leitura do fluxo de telas, foi adotado um sistema de cores nas setas de navegação, onde cada cor representa um tipo específico de ação, jornada ou categoria funcional dentro do aplicativo. Essa legenda é essencial para compreender rapidamente como o usuário navega entre as telas e como cada parte do sistema se conecta.
+
+🔗 **Link do Protótipo no Figma**: [FigJam!](https://www.figma.com/board/aYmf3lZ6Fw62MZ1mKbCohB/XP-CONTROL---FLUXO-DE-TELAS?node-id=0-1&t=RgwXkpxTF2yCAzV6-1)
+
+---
+
+### 2.5.1. Legenda de Cores para Navegação
+
+As cores das setas no diagrama de fluxo representam diferentes tipos de ações e jornadas do usuário dentro do XP Control, conforme detalhado abaixo:
+
+* 🔵 **Setas Azuis**: Representam o **Fluxo Principal** da aplicação. Elas indicam o caminho essencial percorrido por todos os usuários, conectando as telas fundamentais como `Splash → Login → Dashboard`.
+* 🟡 **Setas Amarelas**: Direcionam para o **Fluxo de Criação de Conta (Signup)**. Embora seja um fluxo comum, esta cor o diferencia da navegação principal, marcando o *onboarding* inicial.
+* 🌐 **Setas Ciano**: Identificam o fluxo de **Open Finance + Triagem IA**. Elas indicam a jornada crítica de diagnóstico financeiro e a unificação do *onboarding*.
+* 🟩 **Setas Verdes**: Identificam o **Fluxo dos Jogos**. Elas guiam o caminho exclusivo do usuário através dos módulos de **Decisões Financeiras** e **Estratégia de Resgate**.
+* 🟧 **Setas Laranja**: Identificam o **Fluxo de Dívidas**. Elas marcam o núcleo funcional de visualização, adição, quitação e gestão de passivos.
+* 🟣 **Setas Roxas**: Indicam o **Fluxo de Educação Financeira**. Elas isolam a jornada de aprendizado do usuário, conectando conteúdos da XP Educação.
+* 🌫️ **Setas Cinzas**: Representam os **Fluxos Secundários**. Elas conectam telas auxiliares (como perfil, notificações e ajustes) que não interferem na jornada principal de resgate financeiro.
+* 💗 **Setas Rosas**: Indicam a **Abertura e Interação com o Agente de IA**. Elas marcam o acionamento do assistente virtual (overlay) a partir de diversas telas.
+* 🔴 **Setas Vermelhas**: Representam uma **Ação de Retorno/Voltar**. Elas indicam que o usuário está retrocedendo a uma etapa anterior, cancelando uma operação ou fechando um modal.
+
+---
+
+### 2.5.2. Fluxo do Usuário
+
+A seguir, descrevemos detalhadamente toda a jornada do usuário conforme o fluxograma do protótipo de alta fidelidade. 
+
+#### A. Fluxo Principal (Azul)
+
+O fluxo principal conduz o usuário pelas telas fundamentais do sistema, representando o caminho essencial que todos os usuários percorrem.
+
+* **Splash Screen**: Introduz a marca XP Control. O botão principal "**Iniciar**" leva à próxima etapa (seta azul).
+* **Tela de Login**: Permite a autenticação do usuário. Três fluxos distintos partem daqui:
+    * **Entrar** → Segue o fluxo principal azul.
+    * **Criar conta** → Inicia o Fluxo de Criação de Conta (Amarelo).
+    * **Acessar Agente IA** → Inicia a Abertura do Agente de IA (Rosa).
+* **Dashboard**: Tela central acessada após login ou signup. É o hub de acesso para: Menu inferior (Jogos, Dívidas, Educação, Home), aberturas de modais, Agente de IA e funções secundárias (perfil, histórico). O fluxo azul conecta apenas as telas essenciais.
+
+#### B. Fluxo de Criação de Conta (Amarelo)
+
+O `signup` é linear e sequencial, coletando dados e iniciando o processo de análise financeira.
+
+* **Etapas**: Cadastro inicial, data de nascimento e renda estimada e aceite de termos.
+* **Transição**: Após a criação da conta, o fluxo amarelo direciona o usuário imediatamente para o **Fluxo Ciano (Open Finance + Triagem IA)**, unificando o processo de onboarding e diagnóstico.
+
+#### C. Open Finance + Triagem IA (Ciano)
+
+Esta fase inicia o diagnóstico financeiro imediatamente após o cadastro.
+
+1.  **Conexão ao Open Finance**: Permite conectar contas bancárias para recuperar dados como dívidas bancárias, saldo, transações e gastos de risco (ex: apostas).
+2.  **Triagem Inteligente (com IA)**: Utiliza linguagem natural para coletar dívidas informais e compromissos financeiros não registrados no Open Finance, extraindo: valor da dívida, credor, urgência e condições de pagamento.
+3.  **Resultado da Triagem**: Apresenta um resumo das dívidas identificadas.
+4.  **Conclusão**: A seta ciano final direciona o usuário para o **Dashboard** (fluxo azul).
+
+#### D. Fluxo dos Jogos (Verde)
+
+O módulo de gamificação contém os dois jogos principais de intervenção comportamental:
+
+1.  **Decisões Financeiras (Quiz)**: Fluxo linear de treinamento de impulso: **Pergunta 1 → Pergunta 2 → Pergunta 3 → Pergunta 4 → Pergunta 5**. O resultado final gera **moedas ganhas** e feedback financeiro.
+2.  **Estratégia de Resgate**: Fluxo analítico de alocação: **Tela do jogo → Alocação de recursos → Resultado final**. Recompensas incluem **XP Coins** e *insights* de quitação.
+
+&emsp; As setas verdes ligam todas as telas de interação gamificada, partindo da aba “Jogos”.
+
+#### E. Fluxo de Dívidas (Laranja)
+
+O módulo de dívidas é o núcleo de ação para o Modo Resgate, permitindo:
+
+* Visualizar dívidas bancárias e externas.
+* Adicionar novas dívidas manualmente.
+* Ver detalhes individuais.
+* Criar metas de quitação (cofrinhos).
+* Simular e registrar pagamentos.
+
+&emsp; As setas laranjas partem da aba “Dívidas” e percorrem todo esse núcleo funcional.
+
+#### F. Fluxo de Educação Financeira (Roxo)
+
+A aba Educação oferece conteúdos da XP Educação, incluindo aulas, trilhas e vídeos, e feedback de aprendizado. O fluxo segue setas roxas, isolando este módulo como uma jornada de aprendizado própria.
+
+#### G. Fluxos Secundários (Cinza)
+
+Incluem funcionalidades auxiliares que não fazem parte da jornada principal crítica:
+
+* Tela de **Perfil**
+* Modal de **depósitos**
+
+#### H. Abertura do Agente de IA (Rosa)
+
+O Agente de IA é um *overlay* auxiliar que pode ser aberto em diversas telas (Dashboard, Dívidas, Jogos, Educação), **sem alterar a posição do usuário no fluxo**. As setas rosa representam apenas a abertura do modal e o retorno ao estado anterior.
+
+#### I. Ações de Voltar (Vermelho)
+
+As setas vermelhas indicam comandos de **retorno**, essenciais para a usabilidade e cancelamento de operações:
+
+* Retorno a uma etapa anterior.
+* Fechamento de modal.
+* Cancelamento de operação.
+
+Estão presentes principalmente nas telas de cadastro e em modais secundários.
+
+---
+
+### Conclusão
+
+O fluxo apresentado no protótipo do XP Control representa uma experiência **completa, modular e altamente guiada**. As setas coloridas permitem identificar, de forma rápida e intuitiva, como o usuário transita entre diferentes partes do sistema, desde o onboardin* e a triagem financeira, até a gamificação e educação contínua. Esta seção serve como referência principal para times de design, desenvolvimento e testes, garantindo alinhamento durante todas as fases do projeto.
 
 # <a name="c3"></a>3. Arquitetura e Implementação
 
