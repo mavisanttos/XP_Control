@@ -246,19 +246,436 @@ Este é o ponto de conversão e a recompensa máxima pela disciplina: quando a �
 
 # <a name="c3"></a>3. Arquitetura e Implementação
 
+&emsp; Esta seção detalha a arquitetura técnica que será desenvolvida para o XP Control, desde a estrutura do sistema até os requisitos não funcionais. **É importante destacar que esta documentação descreve a arquitetura planejada e as tecnologias que serão implementadas**, não o estado atual do protótipo. O projeto será desenvolvido utilizando tecnologias modernas de desenvolvimento web, com foco em escalabilidade, segurança e performance. A arquitetura seguirá o padrão de aplicação web full-stack, separando claramente as responsabilidades entre frontend, backend e banco de dados.
 ## <a name="arquitetura"></a>3.1. Arquitetura do Sistema
+
+&emsp; O XP Control adotará uma arquitetura de aplicação web moderna baseada em **Next.js 16** (React 19) com **TypeScript**, utilizando o padrão de **Server-Side Rendering (SSR)** e **Client-Side Rendering (CSR)** conforme necessário. A arquitetura será dividida em três camadas principais:
+
+**1. Camada de Apresentação (Frontend)**
+- **Framework**: Next.js 16 com App Router
+- **Linguagem**: TypeScript 5
+- **Biblioteca UI**: React 19.2.0
+- **Estilização**: Tailwind CSS 4.1.9 com variáveis CSS customizadas
+- **Componentes**: Radix UI para componentes acessíveis (dialogs, dropdowns, tooltips, etc.)
+- **Ícones**: Lucide React
+- **Animações**: CSS customizado com keyframes e biblioteca tw-animate-css
+
+**2. Camada de Dados e Autenticação (Backend)**
+- **Banco de Dados**: Supabase (PostgreSQL gerenciado)
+- **Autenticação**: Supabase Auth (integração nativa com auth.users)
+- **API Routes**: Next.js API Routes (serverless functions)
+- **ORM/Query Builder**: Supabase Client SDK (@supabase/supabase-js 2.84.0)
+- **Validação**: Zod 3.25.76 para validação de schemas TypeScript
+
+**3. Camada de Integrações Externas**
+- **Open Finance**: Integração via API externa (preparada para implementação)
+- **LLM/Chat Agent**: Preparado para integração com serviços de IA (OpenAI, Anthropic, etc.)
+- **Analytics**: Vercel Analytics para monitoramento de uso
+
+**Fluxo de Dados Principal:**
+
+<div align="center">
+  <sub>Figura 2 - Fluxo de dados</sub><br>
+  <img src=assets\diagrama_simples.png><br>
+  <sup>Fonte: Material produzido pelos autores (2025)</sup>
+</div>
+
+
+
+
+
+&emsp; A arquitetura utilizará **Row Level Security (RLS)** do Supabase para garantir que cada usuário acesse apenas seus próprios dados. O sistema implementará triggers automáticos no banco de dados para criar perfis e carteiras automaticamente quando um novo usuário for registrado.
 
 ## <a name="integracoes"></a>3.2. Fluxo e Integrações
 
+&emsp; O XP Control integrar-se-á com serviços externos para fornecer funcionalidades críticas de diagnóstico financeiro e assistência inteligente. O fluxo de integração foi projetado para ser seguro, escalável e manter a privacidade dos dados do usuário.
+
 ### <a name="integracoes"></a>3.2.1. Integração Open Finance e LLM
+
+**Integração Open Finance:**
+
+&emsp; A integração com Open Finance é fundamental para o diagnóstico automático de dívidas bancárias. O fluxo funcionará da seguinte forma:
+
+1. **Autorização do Usuário**: O usuário é direcionado para a tela de conexão Open Finance (`OpenFinanceScreen`), onde visualiza os termos de uso e benefícios da integração.
+
+2. **OAuth Flow**: O sistema redireciona o usuário para o provedor Open Finance (via API externa), onde ele autoriza o acesso às suas contas bancárias. O token de acesso é armazenado de forma segura no banco de dados (`perfis.open_finance_token`).
+
+3. **Sincronização de Dados**: Após a autorização, o sistema realiza uma sincronização inicial para:
+   - Mapear todas as contas bancárias conectadas
+   - Identificar dívidas ativas (cartão de crédito, empréstimos, financiamentos)
+   - Rastrear transações para identificar padrões de risco (ex: transferências para casas de apostas)
+   - Calcular saldo global consolidado
+
+4. **Atualização Contínua**: O sistema pode configurar webhooks ou realizar sincronizações periódicas para manter os dados atualizados, sempre respeitando o token de expiração (`open_finance_expires_at`).
+
+**Integração LLM (Chat Agent):**
+
+&emsp; O Agente de IA do XP Control irá utilizar Large Language Models para fornecer assistência financeira personalizada. A implementação atual prepara a estrutura para integração com provedores como OpenAI ou Anthropic:
+
+1. **Estrutura de Mensagens**: O sistema armazena todas as interações no banco de dados (`chat_agente`), incluindo:
+   - Mensagens do usuário
+   - Respostas do agente
+   - Metadados contextuais (situação financeira, dívidas ativas, progresso)
+
+2. **Contexto Personalizado**: Antes de enviar uma requisição ao LLM, o sistema enriquece o contexto com:
+   - Perfil do usuário (nível, XP Coins, saldo)
+   - Dívidas ativas e status
+   - Histórico de atividades recentes
+   - Progresso na jornada de resgate
+
+3. **Ações Sugeridas**: O LLM pode sugerir ações específicas (ex: "Abater a dívida X primeiro", "Criar uma meta de quitação"), que são armazenadas em `acao_sugerida` para possível automação futura.
+
+4. **Triagem Inteligente**: Durante a fase de triagem, o agente conduz uma conversa estruturada para identificar dívidas informais que não aparecem no Open Finance, utilizando técnicas de processamento de linguagem natural para extrair informações relevantes.
+
+**Fluxo de Integração Completo:**
+
+```
+Usuário → Login/Signup → Open Finance Connection
+  ↓
+Supabase Auth → Criação Automática de Perfil
+  ↓
+Open Finance API → Sincronização de Dados Bancários
+  ↓
+Triagem (LLM) → Identificação de Dívidas Informais
+  ↓
+Dashboard → Visualização Consolidada
+  ↓
+Chat Agent (LLM) → Assistência Contínua
+```
 
 ## <a name="db-estrutura"></a>3.3. Estrutura do Banco de Dados
 
+&emsp; O banco de dados do XP Control foi projetado no **Supabase (PostgreSQL)** com foco em normalização, performance e segurança. A estrutura é composta por 9 tabelas principais, todas protegidas por Row Level Security (RLS). 
+
+
+<div align="center">
+  <sub>Figura 3 - Diagrama Relacional</sub><br>
+  <img src=assets\diagrama_relacional.png><br>
+  <sup>Fonte: Material produzido pelos autores (2025)</sup>
+</div>
+
+
+**Tabelas Principais:**
+
+**1. `perfis` (Perfis de Usuário)**
+- **Chave Primária**: `id` (UUID, referência direta a `auth.users`)
+- **Campos Principais**:
+  - Dados pessoais: `nome_completo`, `cpf`, `birth_date`, `avatar_url`
+  - Gamificação: `modo_atual` ('resgate' | 'investidor'), `nivel_guardiao`, `pontos_xp`, `progresso_jornada`, `investments_unlocked`
+  - Diagnóstico: `renda_mensal`, `divida_total_inicial`, `saldo_global`
+  - Open Finance: `open_finance_connected`, `open_finance_token`, `open_finance_expires_at`
+- **Relacionamentos**: 1:1 com `carteiras`, 1:N com todas as outras tabelas
+
+**2. `carteiras` (Carteira Digital)**
+- **Chave Primária**: `id` (UUID)
+- **Campos**: `saldo_cofre`, `rendimento_acumulado`, `xp_coins`
+- **Relacionamento**: 1:1 com `perfis` (via `usuario_id`)
+
+**3. `transacoes` (Histórico de Transações)**
+- **Tipos**: 'deposito', 'resgate', 'bonus_jogo', 'pagamento_divida', 'income', 'expense', 'reward', 'refund'
+- **Campos**: `valor`, `coins`, `descricao`, `categoria`, `open_finance_id`, `is_from_open_finance`
+- **Relacionamento**: N:1 com `perfis` e `carteiras`
+
+**4. `dividas` (Gestão de Dívidas)**
+- **Campos Principais**:
+  - `origem`: 'banco' | 'externa'
+  - `valor_original`, `valor_atual`, `paid_value`, `remaining_value`
+  - `taxa_juros_mensal`, `prioridade`, `recommended_payment`
+  - `status`: 'ativa' | 'em_acordo' | 'liquidada' | 'negociando'
+- **Relacionamento**: N:1 com `perfis`
+
+**5. `metas_quitacao` (Cofrinho Inteligente)**
+- **Campos**: `nome_meta`, `valor_alvo`, `valor_guardado`, `cdb_rate`, `total_earnings`
+- **Status**: 'em_andamento' | 'completa' | 'cancelada'
+- **Relacionamento**: N:1 com `perfis` e opcionalmente com `dividas` (via `divida_alvo_id`)
+
+**6. `historico_jogos` (Histórico de Jogos)**
+- **Tipos**: 'estrategia_divida', 'mercado_financeiro', 'decisoes_financeiras'
+- **Campos**: `score`, `completed`, `recompensa_coins`, `xp_earned`, `feedback_ia`, `game_data` (JSONB)
+- **Relacionamento**: N:1 com `perfis`
+
+**7. `chat_agente` (Mensagens do Chat)**
+- **Tipos**: 'USER' | 'AGENT' | 'SYSTEM'
+- **Campos**: `mensagem_usuario`, `resposta_ia`, `acao_sugerida`, `metadata` (JSONB)
+- **Relacionamento**: N:1 com `perfis`
+
+**8. `atividades` (Feed de Atividades)**
+- **Tipos**: 'unlock', 'reward', 'debt_reduction', 'level_up', 'achievement', 'payment', 'deposit'
+- **Campos**: `titulo`, `descricao`, `metadata` (JSONB)
+- **Relacionamento**: N:1 com `perfis`
+
+**9. `triagem_sessoes` (Sessões de Triagem)**
+- **Campos**: `respostas` (JSONB), `dividas_identificadas` (JSONB), `recomendacoes` (JSONB), `completed`
+- **Relacionamento**: N:1 com `perfis`
+
+**Segurança e Performance:**
+
+- **Row Level Security (RLS)**: Todas as tabelas possuem políticas que garantem que usuários só acessem seus próprios dados (`auth.uid() = usuario_id`)
+- **Índices**: Criados em campos frequentemente consultados (`usuario_id`, `status`, `criado_em`, `tipo_jogo`)
+- **Triggers**: Função `handle_new_user()` cria automaticamente perfil e carteira quando um usuário é registrado no Auth
+- **Constraints**: Validações de tipos (CHECK constraints) garantem integridade dos dados
+
 ## <a name="frontend-estrutura"></a>3.4. Estrutura do Frontend
+
+&emsp; O frontend do XP Control segue uma arquitetura modular baseada em componentes React, organizados por responsabilidade e reutilização. A estrutura de pastas reflete a separação entre telas, componentes compartilhados e utilitários.
+
+**Estrutura de Diretórios:**
+
+```
+src/
+├── app/                    # Next.js App Router
+│   ├── api/                # API Routes (serverless)
+│   │   ├── users/          # Endpoints de usuários
+│   │   ├── debts/          # Endpoints de dívidas
+│   │   ├── game-sessions/  # Endpoints de jogos
+│   │   └── test-connection/ # Teste de conexão
+│   ├── globals.css         # Estilos globais e variáveis CSS
+│   ├── layout.tsx          # Layout raiz da aplicação
+│   └── page.tsx            # Página principal (gerenciador de telas)
+│
+├── components/             # Componentes React
+│   ├── screens/           # Telas completas da aplicação
+│   │   ├── splash-screen.tsx
+│   │   ├── login-screen.tsx
+│   │   ├── signup-screen.tsx
+│   │   ├── open-finance-screen.tsx
+│   │   ├── triage-screen.tsx
+│   │   ├── dashboard.tsx
+│   │   ├── games.tsx
+│   │   ├── debts.tsx
+│   │   ├── education.tsx
+│   │   └── victory-screen.tsx
+│   ├── icons/             # Componentes de ícones customizados
+│   │   ├── robot-icon.tsx
+│   │   └── xp-coin-icon.tsx
+│   ├── add-debt-modal.tsx
+│   ├── bottom-nav.tsx
+│   ├── card-game-screen.tsx
+│   ├── chat-agent.tsx
+│   ├── deposit-modal.tsx
+│   ├── finance-success-modal.tsx
+│   ├── navbar.tsx
+│   ├── profile-modal.tsx
+│   ├── theme-provider.tsx
+│   ├── triage-popup.tsx
+│   ├── animated-card.tsx
+│   └── aurora.tsx
+│
+├── lib/                   # Utilitários e configurações
+│   ├── supabase.ts        # Cliente Supabase
+│   ├── database.types.ts  # Tipos TypeScript do banco
+│   └── utils.ts           # Funções utilitárias
+│
+├── public/                # Arquivos estáticos
+│   └── [imagens e ícones]
+│
+└── styles/                # Estilos adicionais
+    └── globals.css
+```
+
+**Gerenciamento de Estado:**
+
+&emsp; O estado da aplicação é gerenciado principalmente através de **React Hooks** (useState, useEffect) no componente raiz (`page.tsx`). O estado global inclui:
+
+- `currentScreen`: Controla qual tela está sendo exibida
+- `userProfile`: Dados do usuário logado (nome, email, nível, XP Coins, saldo, etc.)
+- `debtsCovered`: Flag que indica se todas as dívidas foram quitadas
+- `showChat`: Controla a visibilidade do chat agent
+
+**Fluxo de Navegação:**
+
+&emsp; A navegação é controlada pelo componente `page.tsx`, que renderiza condicionalmente diferentes telas baseado no estado `currentScreen`. O fluxo segue a jornada do usuário:
+
+```
+Splash → Login → Signup → Open Finance → Triage → Dashboard
+                                              ↓
+                                    [Games | Debts | Education]
+                                              ↓
+                                         Victory (quando aplicável)
+```
+
+**Componentes Principais:**
+
+1. **Screens**: Telas completas que representam diferentes etapas da jornada
+2. **Modals**: Componentes modais reutilizáveis para ações específicas
+3. **Navigation**: `BottomNav` para navegação entre seções principais
+4. **Chat Agent**: Componente flutuante para assistência via IA
+5. **Game Components**: Componentes específicos para os jogos gamificados
+
+**Estilização:**
+
+- **Tailwind CSS 4.1.9**: Framework de utilitários CSS para estilização rápida
+- **Variáveis CSS**: Sistema de design tokens definido em `globals.css`
+- **Tema Escuro**: Aplicação utiliza tema dark por padrão
+- **Responsividade**: Design mobile-first com breakpoints para tablets e desktop
+- **Animações**: Keyframes customizados para efeitos de glow, pulse e transições
 
 ## <a name="implementacao"></a>3.5. Implementação
 
+&emsp; A implementação do XP Control seguirá boas práticas de desenvolvimento moderno, priorizando type-safety, reutilização de código e manutenibilidade. Esta seção detalha as decisões técnicas e padrões que serão implementados.
+
+**Stack Tecnológico:**
+
+- **Runtime**: Node.js (via Next.js)
+- **Framework Frontend**: Next.js 16.0.3 com App Router
+- **Linguagem**: TypeScript 5
+- **UI Library**: React 19.2.0
+- **Estilização**: Tailwind CSS 4.1.9
+- **Componentes**: Radix UI (acessibilidade)
+- **Banco de Dados**: Supabase (PostgreSQL)
+- **Autenticação**: Supabase Auth
+- **Validação**: Zod 3.25.76
+- **Formulários**: React Hook Form 7.60.0
+- **Ícones**: Lucide React 0.454.0
+
+**Padrões de Código:**
+
+1. **TypeScript Strict Mode**: Projeto utilizará TypeScript com configuração strict para garantir type-safety
+2. **Component Pattern**: Componentes funcionais com hooks, seguindo padrões do React moderno
+3. **Separation of Concerns**: Separação clara entre lógica de negócio, apresentação e dados
+4. **Reusable Components**: Componentes modulares e reutilizáveis (modals, cards, buttons)
+5. **Error Handling**: Tratamento de erros em chamadas de API e operações assíncronas
+
+**Configurações Principais:**
+
+**next.config.mjs:**
+- TypeScript errors ignorados durante build (para desenvolvimento)
+- Imagens não otimizadas (configurável para produção)
+
+**tsconfig.json:**
+- Target: ES6
+- Module: ESNext
+- JSX: react-jsx
+- Path aliases: `@/*` aponta para raiz do projeto
+
+**postcss.config.mjs:**
+- Plugin Tailwind CSS para processamento de CSS
+
+**Segurança:**
+
+- **Environment Variables**: Variáveis sensíveis (Supabase keys) armazenadas em `.env.local`
+- **RLS Policies**: Row Level Security no banco garante isolamento de dados
+- **HTTPS Only**: Aplicação deve ser servida via HTTPS em produção
+- **Input Validation**: Validação de dados com Zod antes de inserções no banco
+
+**Performance:**
+
+- **Code Splitting**: Next.js realiza code splitting automático por rota
+- **Image Optimization**: Preparado para otimização de imagens (quando habilitado)
+- **Lazy Loading**: Componentes carregados sob demanda
+- **Database Indexing**: Índices criados em campos frequentemente consultados
+
+**Deploy e DevOps:**
+
+- **Plataforma**: Preparado para deploy na Vercel (otimizado para Next.js)
+- **CI/CD**: Estrutura permite integração contínua
+- **Analytics**: Vercel Analytics integrado para monitoramento
+
 ## <a name="requisitos-nao-funcionais"></a>3.6. Requisitos Não Funcionais
+
+&emsp; Os requisitos não funcionais do XP Control foram definidos para garantir que a aplicação atenda aos padrões de qualidade, segurança e performance necessários para uma plataforma financeira. Esta seção detalha os requisitos técnicos e suas implementações.
+
+**1. Segurança**
+
+- **Autenticação e Autorização**: 
+  - Sistema utilizará Supabase Auth com autenticação por email/senha
+  - Tokens JWT serão gerenciados automaticamente pelo Supabase
+  - Row Level Security (RLS) garantirá que usuários só acessem seus próprios dados
+  
+- **Proteção de Dados**:
+  - Dados sensíveis (tokens Open Finance) armazenados de forma criptografada
+  - Comunicação via HTTPS obrigatória em produção
+  - Validação de inputs para prevenir SQL injection e XSS
+  
+- **Conformidade**:
+  - Preparado para LGPD (Lei Geral de Proteção de Dados)
+  - Termos de uso e política de privacidade serão implementados na tela de Open Finance
+
+**2. Performance**
+
+- **Tempo de Resposta**:
+  - API Routes devem responder em menos de 500ms para operações simples
+  - Queries ao banco otimizadas com índices apropriados
+  - Lazy loading de componentes pesados
+  
+- **Otimização Frontend**:
+  - Code splitting automático pelo Next.js
+  - CSS minificado em produção
+  - Imagens otimizadas (quando habilitado)
+  
+- **Escalabilidade**:
+  - Arquitetura serverless permite escalonamento automático
+  - Banco de dados Supabase oferece escalabilidade horizontal
+
+**3. Usabilidade**
+
+- **Responsividade**:
+  - Design mobile-first
+  - Suporte para tablets e desktop
+  - Interface adaptável a diferentes tamanhos de tela
+  
+- **Acessibilidade**:
+  - Componentes Radix UI seguem padrões WCAG
+  - Navegação por teclado suportada
+  - Contraste de cores adequado (tema escuro)
+  
+- **Feedback Visual**:
+  - Animações e transições suaves
+  - Estados de loading para operações assíncronas
+  - Mensagens de erro claras e acionáveis
+
+**4. Confiabilidade**
+
+- **Disponibilidade**:
+  - Meta de uptime de 99.9%
+  - Deploy em infraestrutura gerenciada (Vercel + Supabase)
+  
+- **Tolerância a Falhas**:
+  - Tratamento de erros em todas as operações assíncronas
+  - Fallbacks para quando serviços externos estão indisponíveis
+  - Validação de dados antes de persistência
+  
+- **Backup e Recuperação**:
+  - Backups automáticos do Supabase
+  - Versionamento de código via Git
+
+**5. Manutenibilidade**
+
+- **Código Limpo**:
+  - TypeScript para type-safety
+  - Componentes modulares e reutilizáveis
+  - Comentários e documentação inline onde necessário
+  
+- **Testabilidade**:
+  - Estrutura permite testes unitários e de integração
+  - Separação de lógica facilita mocking
+  
+- **Versionamento**:
+  - Controle de versão via Git
+  - Estrutura de branches para desenvolvimento e produção
+
+**6. Compatibilidade**
+
+- **Navegadores**:
+  - Suporte para Chrome, Firefox, Safari e Edge (últimas versões)
+  - Progressive Web App (PWA) preparado para instalação
+  
+- **Dispositivos**:
+  - Mobile: iOS e Android
+  - Tablet: iPad e Android tablets
+  - Desktop: Windows, macOS e Linux
+
+**7. Monitoramento e Logging**
+
+- **Analytics**:
+  - Vercel Analytics integrado para métricas de uso
+  - Tracking de eventos importantes (conexão Open Finance, conclusão de jogos)
+  
+- **Logging**:
+  - Logs de erros para debugging
+  - Histórico de atividades do usuário no banco de dados
+
+&emsp; Em resumo, a Seção 3 estabeleceu que o XP Control está sendo arquitetado como uma aplicação web moderna, escalável e segura, utilizando tecnologias de ponta e seguindo boas práticas de desenvolvimento. A estrutura modular, o banco de dados normalizado e as integrações preparadas garantem que a plataforma possa evoluir e escalar conforme a necessidade, mantendo a qualidade e segurança necessárias para uma aplicação financeira.
 
 # <a name="c4"></a>4. Viabilidade e Futuro
 
