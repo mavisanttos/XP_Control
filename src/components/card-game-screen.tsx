@@ -3,6 +3,7 @@
 import type React from "react"
 
 import { useState, useRef } from "react"
+import AnimatedCard from "@/components/animated-card"
 
 interface CardData {
   id: number
@@ -69,12 +70,13 @@ const CARDS: CardData[] = [
 ]
 
 interface CardGameScreenProps {
-  onComplete: () => void
+  onComplete: (finalScore: number, correctAnswers: number) => void
 }
 
 export default function CardGameScreen({ onComplete }: CardGameScreenProps) {
   const [currentCardIndex, setCurrentCardIndex] = useState(0)
   const [score, setScore] = useState(0)
+  const [correctAnswers, setCorrectAnswers] = useState(0)
   const [animatingOut, setAnimatingOut] = useState(false)
   const [direction, setDirection] = useState<"left" | "right" | null>(null)
   const [dragX, setDragX] = useState(0)
@@ -128,7 +130,14 @@ export default function CardGameScreen({ onComplete }: CardGameScreenProps) {
     setDirection(isRight ? "right" : "left")
 
     const newScore = isRight ? currentCard.rightScore : currentCard.leftScore
-    setScore(score + newScore)
+    const isCorrect = newScore > (isRight ? currentCard.leftScore : currentCard.rightScore)
+    const updatedScore = score + newScore
+    const updatedCorrectAnswers = isCorrect ? correctAnswers + 1 : correctAnswers
+    
+    setScore(updatedScore)
+    if (isCorrect) {
+      setCorrectAnswers(updatedCorrectAnswers)
+    }
 
     setTimeout(() => {
       if (currentCardIndex < CARDS.length - 1) {
@@ -136,7 +145,8 @@ export default function CardGameScreen({ onComplete }: CardGameScreenProps) {
         setAnimatingOut(false)
         setDirection(null)
       } else {
-        onComplete()
+        // Última carta - chamar onComplete com os valores atualizados
+        onComplete(updatedScore, updatedCorrectAnswers)
       }
     }, 500)
   }
@@ -145,11 +155,14 @@ export default function CardGameScreen({ onComplete }: CardGameScreenProps) {
   const dragRotation = (dragX / 100) * 10
 
   return (
-    <div className="w-full flex flex-col items-center justify-center min-h-[600px] md:min-h-[700px]">
-      <div className="mb-8 text-center">
-        <p className="text-slate-400 text-sm">Pontuação</p>
-        <p className="text-4xl font-bold text-emerald-500 mt-1">{Math.max(0, score)}</p>
-        <p className="text-slate-400 text-xs mt-2">
+    <div className="w-full flex flex-col items-center justify-center min-h-[600px] md:min-h-[700px] relative z-10">
+      {/* Exibição de Pontuação */}
+      <div className="mb-6 text-center relative z-20">
+        <div>
+          <p className="text-slate-200 text-sm drop-shadow">Pontuação</p>
+          <p className="text-2xl md:text-3xl font-bold text-emerald-400 drop-shadow mt-1">{Math.max(0, score)}</p>
+        </div>
+        <p className="text-slate-400 text-xs mt-2 drop-shadow">
           Carta {currentCardIndex + 1} de {CARDS.length}
         </p>
       </div>
@@ -179,42 +192,53 @@ export default function CardGameScreen({ onComplete }: CardGameScreenProps) {
               : `translateX(${dragX}px) rotate(${dragRotation}deg)`,
           }}
         >
-          <div className="premium-card border-purple-500/50 bg-gradient-to-br from-purple-500/20 to-slate-950 p-6 md:p-8 min-h-72">
-            <div className="mb-4">
-              <span className="text-xs font-semibold text-purple-400 uppercase tracking-widest">
-                {currentCard.category}
-              </span>
-              <h2 className="text-2xl md:text-3xl font-bold text-white mt-2">{currentCard.title}</h2>
-            </div>
+          <AnimatedCard
+            className="w-full"
+            enableTilt={true}
+            enableMobileTilt={false}
+            innerGradient="linear-gradient(145deg, rgba(168, 85, 247, 0.15) 0%, rgba(16, 185, 129, 0.15) 100%)"
+            behindGlowColor="rgba(168, 85, 247, 0.3)"
+          >
+            <div className="p-8 md:p-10 min-h-80 w-full flex flex-col items-center justify-center text-center relative">
+              {/* Categoria no topo centralizado */}
+              <div className="absolute top-6 md:top-8 inset-x-0 flex justify-center items-center">
+                <span className="text-xs md:text-sm font-semibold text-purple-400 uppercase tracking-widest">
+                  {currentCard.category}
+                </span>
+              </div>
 
-            <p className="text-slate-300 text-base md:text-lg mb-8 leading-relaxed">{currentCard.description}</p>
-
-            <div className="flex items-center justify-between gap-2 text-xs text-slate-400 mb-6">
-              <span>Arraste esquerda</span>
-              <span className="flex-1 h-px bg-slate-700" />
-              <span>Arraste direita</span>
+              {/* Pergunta centralizada no meio da carta */}
+              <div className="flex-1 flex items-center justify-center mt-12 md:mt-16">
+                <p className="text-slate-300 text-lg md:text-xl leading-relaxed max-w-md">
+                  {currentCard.description}
+                </p>
+              </div>
             </div>
+          </AnimatedCard>
+        </div>
+      </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              <button
-                onClick={() => handleChoice(false)}
-                className="bg-red-500/20 border border-red-500/50 hover:bg-red-500/30 text-red-300 hover:text-red-200 font-bold py-3 md:py-4 rounded-lg transition-all hover:shadow-lg hover:shadow-red-500/30 neon-button text-sm md:text-base"
-              >
-                Esquerda
-              </button>
-              <button
-                onClick={() => handleChoice(true)}
-                className="bg-emerald-500/20 border border-emerald-500/50 hover:bg-emerald-500/30 text-emerald-300 hover:text-emerald-200 font-bold py-3 md:py-4 rounded-lg transition-all hover:shadow-lg hover:shadow-emerald-500/30 neon-button text-sm md:text-base"
-              >
-                Direita
-              </button>
+      {/* Botões de decisão fora da carta */}
+      <div className="w-full max-w-sm px-4 mt-6">
+        <div className="grid grid-cols-2 gap-4">
+          <button
+            onClick={() => handleChoice(false)}
+            className="bg-slate-800/50 border border-slate-700 hover:bg-slate-700/50 text-slate-300 hover:text-white font-bold py-4 md:py-5 rounded-lg transition-all hover:shadow-lg hover:shadow-slate-700/30 neon-button text-sm md:text-base relative z-20"
+          >
+            <div className="flex flex-col items-center gap-2">
+              <span className="text-xs text-slate-400">Arraste para esquerda</span>
+              <span>{currentCard.leftOption}</span>
             </div>
-
-            <div className="grid grid-cols-2 gap-4 mt-4 text-xs text-slate-400">
-              <span className="text-center">{currentCard.leftOption}</span>
-              <span className="text-center">{currentCard.rightOption}</span>
+          </button>
+          <button
+            onClick={() => handleChoice(true)}
+            className="bg-slate-800/50 border border-slate-700 hover:bg-slate-700/50 text-slate-300 hover:text-white font-bold py-4 md:py-5 rounded-lg transition-all hover:shadow-lg hover:shadow-slate-700/30 neon-button text-sm md:text-base relative z-20"
+          >
+            <div className="flex flex-col items-center gap-2">
+              <span className="text-xs text-slate-400">Arraste para direita</span>
+              <span>{currentCard.rightOption}</span>
             </div>
-          </div>
+          </button>
         </div>
       </div>
 

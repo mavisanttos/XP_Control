@@ -9,14 +9,18 @@ interface DepositModalProps {
   isOpen: boolean
   onClose: () => void
   onDeposit: (amount: number) => void
+  debtName?: string // Nome da dívida se for cofrinho específico
+  currentSavings?: number // Valor atual do cofrinho da dívida
 }
 
-export default function DepositModal({ isOpen, onClose, onDeposit }: DepositModalProps) {
+export default function DepositModal({ isOpen, onClose, onDeposit, debtName, currentSavings }: DepositModalProps) {
   const [amount, setAmount] = useState("")
+  const isDebtSavings = debtName !== undefined
 
   const handleDepositClick = () => {
     if (amount && Number(amount) > 0) {
-      onDeposit(Number(amount))
+      // amount está em centavos, converter para reais
+      onDeposit(Number(amount) / 100)
       setAmount("")
       onClose()
     }
@@ -43,7 +47,9 @@ export default function DepositModal({ isOpen, onClose, onDeposit }: DepositModa
     <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
       <div className="bg-slate-900 border border-slate-700 rounded-lg p-6 w-full max-w-sm">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-bold text-white">Depositar no Cofrinho</h2>
+          <h2 className="text-xl font-bold text-white">
+            {isDebtSavings ? `Cofrinho - ${debtName}` : "Depositar no Cofrinho"}
+          </h2>
           <button onClick={onClose} className="text-slate-400 hover:text-white transition-colors">
             <X size={20} />
           </button>
@@ -62,9 +68,19 @@ export default function DepositModal({ isOpen, onClose, onDeposit }: DepositModa
           </div>
 
           <div className="bg-slate-800/50 border border-slate-700 rounded-lg p-4">
-            <p className="text-xs text-slate-400">Seu novo saldo seria:</p>
+            {isDebtSavings && currentSavings !== undefined && (
+              <div className="mb-3 pb-3 border-b border-slate-700">
+                <p className="text-xs text-slate-400">Saldo atual do cofrinho:</p>
+                <p className="text-base font-bold text-emerald-400 mt-1">
+                  R$ {currentSavings.toFixed(2)}
+                </p>
+              </div>
+            )}
+            <p className="text-xs text-slate-400">
+              {isDebtSavings ? "Novo saldo do cofrinho:" : "Seu novo saldo seria:"}
+            </p>
             <p className="text-lg font-bold text-emerald-500 mt-2">
-              R$ {(200 + (Number(amount) || 0) / 100).toFixed(2)}
+              R$ {((isDebtSavings ? (currentSavings || 0) : 200) + (Number(amount) || 0) / 100).toFixed(2)}
             </p>
           </div>
 
@@ -78,9 +94,14 @@ export default function DepositModal({ isOpen, onClose, onDeposit }: DepositModa
             <button
               onClick={handleDepositClick}
               disabled={!amount || Number(amount) <= 0}
-              className="flex-1 px-4 py-3 bg-emerald-500 hover:bg-emerald-600 disabled:opacity-50 disabled:cursor-not-allowed text-slate-950 rounded-lg transition-all font-bold hover:shadow-lg hover:shadow-emerald-500/50 neon-button"
+              className="flex-1 relative px-4 py-3 rounded-lg transition-all hover:scale-105 shadow-lg hover:shadow-emerald-500/50 group disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
             >
-              Depositar
+              {/* Borda com gradiente */}
+              <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-emerald-500 to-purple-500 opacity-100 group-hover:from-emerald-600 group-hover:to-purple-600 transition-all" />
+              {/* Fundo transparente */}
+              <div className="absolute inset-[1px] rounded-lg bg-slate-950/90" />
+              {/* Texto */}
+              <span className="relative z-10 text-white font-bold">Depositar</span>
             </button>
           </div>
         </div>

@@ -2,7 +2,8 @@
 
 import type React from "react"
 import { useState } from "react"
-import { ChevronRight, ChevronLeft } from "lucide-react"
+import { ChevronRight, ChevronLeft, ArrowLeft } from "lucide-react"
+import Aurora from "@/components/aurora"
 
 interface SignupScreenProps {
   onComplete: () => void
@@ -45,12 +46,33 @@ export default function SignupScreen({ onComplete, userProfile, setUserProfile, 
   }
 
   return (
-    <div className="w-full h-screen flex flex-col items-center justify-center bg-slate-950 px-4 py-6">
-      <div className="w-full max-w-md">
+    <div className="w-full h-screen flex flex-col items-center justify-center bg-slate-950 px-4 py-6 relative">
+      {/* Efeito Aurora no fundo */}
+      <div className="fixed inset-0 z-[1] pointer-events-none">
+        <Aurora
+          colorStops={["#10b981", "#a855f7", "#10b981"]}
+          blend={0.5}
+          amplitude={1.0}
+          speed={0.5}
+        />
+      </div>
+      
+      <div className="w-full max-w-md relative z-20">
         {/* Header */}
         <div className="text-center mb-8">
+          {/* Logo animado (mesmo da splash) */}
+          <div className="flex justify-center mb-4">
+            <div className="relative w-16 h-16 md:w-20 md:h-20">
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500 to-purple-500 rounded-2xl opacity-75 animate-pulse" />
+              <div className="absolute inset-1 bg-slate-950 rounded-xl flex items-center justify-center">
+                <span className="text-2xl md:text-3xl font-bold bg-gradient-to-r from-emerald-500 to-purple-500 bg-clip-text text-transparent">
+                  XP
+                </span>
+              </div>
+            </div>
+          </div>
           <h1 className="text-3xl font-bold text-white mb-2">{step === 1 ? "Crie sua conta" : "Seus dados"}</h1>
-          <p className="text-slate-400 text-sm">
+          <p className="text-slate-200 text-sm drop-shadow">
             {step === 1 ? "Complete seus dados" : "Para melhor análise financeira"}
           </p>
         </div>
@@ -60,7 +82,7 @@ export default function SignupScreen({ onComplete, userProfile, setUserProfile, 
           {step === 1 && (
             <>
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">Email</label>
+                <label className="block text-sm font-medium text-slate-200 mb-2 drop-shadow">Email</label>
                 <input
                   type="email"
                   name="email"
@@ -71,7 +93,7 @@ export default function SignupScreen({ onComplete, userProfile, setUserProfile, 
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">Senha</label>
+                <label className="block text-sm font-medium text-slate-200 mb-2 drop-shadow">Senha</label>
                 <input
                   type="password"
                   name="password"
@@ -82,7 +104,7 @@ export default function SignupScreen({ onComplete, userProfile, setUserProfile, 
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">Confirmar senha</label>
+                <label className="block text-sm font-medium text-slate-200 mb-2 drop-shadow">Confirmar senha</label>
                 <input
                   type="password"
                   name="confirmPassword"
@@ -97,7 +119,7 @@ export default function SignupScreen({ onComplete, userProfile, setUserProfile, 
           {step === 2 && (
             <>
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">Nome completo</label>
+                <label className="block text-sm font-medium text-slate-200 mb-2 drop-shadow">Nome completo</label>
                 <input
                   type="text"
                   name="name"
@@ -108,7 +130,7 @@ export default function SignupScreen({ onComplete, userProfile, setUserProfile, 
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">Data de nascimento</label>
+                <label className="block text-sm font-medium text-slate-200 mb-2 drop-shadow">Data de nascimento</label>
                 <input
                   type="date"
                   name="birthDate"
@@ -118,7 +140,7 @@ export default function SignupScreen({ onComplete, userProfile, setUserProfile, 
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">Renda estimada (R$)</label>
+                <label className="block text-sm font-medium text-slate-200 mb-2 drop-shadow">Renda estimada (R$)</label>
                 <input
                   type="number"
                   name="income"
@@ -133,13 +155,20 @@ export default function SignupScreen({ onComplete, userProfile, setUserProfile, 
         </div>
 
         {/* Navigation */}
-        <div className="flex gap-3 mb-6">
+        <div className="flex justify-center gap-3 mb-6">
           <button
             onClick={handleBack}
-            className="flex-1 px-4 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-lg transition-all font-medium hover:shadow-lg hover:shadow-slate-700/50 neon-button flex items-center justify-center gap-2"
+            className="relative px-6 py-2.5 rounded-lg transition-all hover:scale-105 shadow-lg hover:shadow-slate-700/50 group"
           >
-            <ChevronLeft size={20} />
-            Voltar
+            {/* Borda com gradiente - cinza */}
+            <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-slate-600 to-slate-700 opacity-100 group-hover:from-slate-700 group-hover:to-slate-800 transition-all" />
+            {/* Fundo transparente */}
+            <div className="absolute inset-[1px] rounded-lg bg-slate-950/90" />
+            {/* Texto */}
+            <span className="relative z-10 text-white font-bold flex items-center justify-center gap-2 text-sm">
+              <ChevronLeft size={18} />
+              Voltar
+            </span>
           </button>
           <button
             onClick={handleNext}
@@ -148,10 +177,17 @@ export default function SignupScreen({ onComplete, userProfile, setUserProfile, 
                 ? !formData.email || !formData.password || formData.confirmPassword !== formData.password
                 : !formData.name || !formData.birthDate || !formData.income
             }
-            className="flex-1 px-4 py-3 bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 disabled:opacity-50 disabled:cursor-not-allowed text-slate-950 rounded-lg transition-all font-bold flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-emerald-500/50 neon-button"
+            className="relative px-6 py-2.5 rounded-lg transition-all hover:scale-105 shadow-lg hover:shadow-emerald-500/50 group disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
           >
-            {step === 2 ? "Continuar" : "Próximo"}
-            <ChevronRight size={20} />
+            {/* Borda com gradiente */}
+            <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-emerald-500 to-purple-500 opacity-100 group-hover:from-emerald-600 group-hover:to-purple-600 transition-all" />
+            {/* Fundo transparente */}
+            <div className="absolute inset-[1px] rounded-lg bg-slate-950/90" />
+            {/* Texto */}
+            <span className="relative z-10 text-white font-bold flex items-center justify-center gap-2 text-sm">
+              {step === 2 ? "Continuar" : "Próximo"}
+              <ChevronRight size={18} />
+            </span>
           </button>
         </div>
 
