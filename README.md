@@ -40,6 +40,52 @@ Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
 
 - <b>README.md</b>: arquivo que serve como guia e explicação geral sobre o projeto (o mesmo que você está lendo agora).
 
+##  Como Rodar o Projeto
+
+Para executar o projeto localmente e visualizar o frontend desenvolvido, siga os passos abaixo:
+
+### Pré-requisitos
+
+- Node.js (versão 18 ou superior)
+- npm ou pnpm instalado
+
+### Passo 1: Instalar Dependências
+
+Navegue até a pasta `src` e instale as dependências do projeto:
+
+```bash
+cd src
+npm install
+```
+
+ou, se estiver usando pnpm:
+
+```bash
+cd src
+pnpm install
+```
+
+### Passo 2: Executar o Projeto
+
+Com as dependências instaladas, execute o servidor de desenvolvimento:
+
+```bash
+npm run dev
+```
+
+ou, se estiver usando pnpm:
+
+```bash
+pnpm dev
+```
+
+### Passo 3: Acessar a Aplicação
+
+Abra seu navegador e acesse **http://localhost:3000** para visualizar a interface do projeto.
+
+> **Nota:** O projeto está em desenvolvimento e ainda não possui conexão com banco de dados. A visualização atual mostra a interface e os componentes desenvolvidos.
+
+---
 
 ## 📋 Licença/License
 
