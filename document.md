@@ -719,7 +719,7 @@ Splash → Login → Signup → Open Finance → Triage → Dashboard
 - **Descontos em Negociação de Dívidas**: Parcerias com instituições financeiras para oferecer descontos em quitação de dívidas, onde a XP recebe uma comissão sobre o valor negociado.
 - **Programas de Cashback**: Parcerias com fintechs e empresas para oferecer cashback em compras, onde parte do valor é direcionado para o Cofrinho Inteligente.
 
-&emsp; Em conclusão, a viabilidade econômica do XP Control é fundamentada em um modelo de negócio inovador que transforma um problema social (endividamento jovem) em uma oportunidade de negócio sustentável. O projeto gera valor através da conversão qualificada de usuários em clientes de investimentos, criando um funil de aquisição de alto valor e longo prazo. As projeções conservadoras demonstram potencial de retorno positivo a partir do 4º ano, com potencial de escalabilidade significativa conforme a base de usuários cresce. O modelo alinha perfeitamente os objetivos sociais do projeto com a geração de receita para a XP Inc, criando uma solução win-win que beneficia tanto os jovens endividados quanto a empresa.
+&emsp; Em conclusão, a viabilidade econômica do XP Control é fundamentada em um modelo de negócio inovador que transforma um problema social (endividamento jovem) em uma oportunidade de negócio sustentável. O projeto gera valor através da conversão qualificada de usuários em clientes de investimentos, criando um funil de aquisição de alto valor e longo prazo. O modelo alinha perfeitamente os objetivos sociais do projeto com a geração de receita para a XP Inc, criando uma solução win-win que beneficia tanto os jovens endividados quanto a empresa.
 
 ## <a name="proximos-passos"></a>4.2. Próximos Passos
 
