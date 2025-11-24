@@ -716,6 +716,44 @@ Splash → Login → Signup → Open Finance → Triage → Dashboard
 
 ## <a name="proximos-passos"></a>4.2. Próximos Passos
 
+&emsp; Com a arquitetura do produto e a metodologia didática estabelecidas, os próximos passos visam a execução técnica e a validação do impacto comportamental da Gamificação Bimodal. O plano de trabalho está dividido em três fases estratégicas, focadas em garantir o lançamento de um Produto Mínimo Viável (MVP) robusto, seguido por testes rigorosos e, por fim, a escala dentro do ecossistema XP.
+
+**Desenvolvimento: Roadmap de Implementação e Evolução**
+
+Fase 1: Desenvolvimento e Lançamento do MVP (6 Meses)
+
+Esta fase foca na construção das funcionalidades essenciais para intervenção e resgate:
+
+- Integração de Dados: Finalizar a integração estável com o Open Finance para diagnóstico de dívidas e rastreamento de risco (apostas).
+
+- Núcleo Bimodal: Desenvolver o Modo Resgate, o Hub de Comando e o Jogo 1 (Cartas Interativas e Simulador de Estratégia de Resgate).
+
+- Custódia Inicial: Implementar o Cofrinho Inteligente, garantindo a aplicação automática em CDBs XP (liquidez diária) e a geração de custódia desde o início.
+
+- Agente de Intervenção: Desenvolver o módulo básico do Agente Sentinel para sugestões proativas de quitação.
+
+Fase 2: Testes Comportamentais e Validação (3 Meses)
+
+O objetivo é provar que a Gamificação Bimodal gera resultados comportamentais superiores:
+
+- Testes A/B: Realizar um piloto com um grupo representativo da Geração Z (perfis de alto risco), comparando o engajamento e a taxa de quitação do XP Control versus abordagens tradicionais de educação financeira.
+
+- Otimização do Jogo: Ajustar a dificuldade, as recompensas (XP Coins) e as regras do Jogo 1 com base no feedback dos usuários e na taxa de adesão às Missões Diárias.
+
+- Validação da Conversão: Monitorar a taxa de clientes que, após a quitação, já possuem custódia ativa (via Cofrinho) e que demonstram interesse na migração para o Jogo 2.
+
+Fase 3: Escala e Expansão (Longo Prazo)
+
+Foco na maximização do valor para o usuário e para a XP Inc.:
+
+- Liberação do Jogo 2: Desenvolver e lançar o Simulador de Mercado e o mecanismo de conversão de acertos em aportes reais em renda variável.
+
+- Integração Profunda: Criar deep linking e trilhas personalizadas na tela XP Educação com base no perfil de risco e progresso do usuário.
+
+- Expansão do Agente: Aprimorar o Agente Sentinel para incluir negociações automatizadas mais complexas e sugestões de otimização fiscal.
+
+&emsp; Os próximos passos delineados transformam o XP Control de um conceito inovador em um funil de aquisição de clientes mensurável e de alto impacto. Ao priorizar a intervenção e a disciplina no MVP e garantir que o sucesso do usuário se traduza diretamente em custódia XP, o projeto assegura que a XP Inc. se posicione como a parceira financeira ideal para a Geração Z, redefinindo o caminho para o investimento no Brasil.
+
 # <a name="c5"></a>5. Referências
 
 [1] G1. *Educação financeira: número de jovens inadimplentes no Brasil é preocupante*. Santarém, 18 nov. 2022. Disponível em: <https://g1.globo.com/pa/santarem-regiao/noticia/2022/11/18/educacao-financeira-numero-de-jovens-inadiplentes-no-brasil-e-preocupante.ghtml>. Acesso em: 22 nov. 2025.</a>
