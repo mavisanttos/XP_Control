@@ -448,6 +448,158 @@ Dashboard → Visualização Consolidada
 Chat Agent (LLM) → Assistência Contínua
 ```
 
+### <a name="arquitetura-llm"></a>3.2.2. Arquitetura LLM: Gemini + RAG + Function Calling
+
+&emsp; Esta subseção detalha a arquitetura planejada para a camada de Inteligência Artificial do XP Control, integrando de forma estratégica três capacidades avançadas: **RAG (Retrieval Augmented Generation)**, **Embeddings** e **Function Calling**, operando sobre a API do **Google Gemini**. O objetivo é transformar o Agente Sentinel em uma entidade verdadeiramente inteligente, capaz de oferecer diagnósticos financeiros contextualizados, recomendações precisas e ações automatizadas ao longo da jornada do usuário.
+
+&emsp; Esta arquitetura não existe apenas como um adorno técnico; ela reforça diretamente o pilar didático e comportamental do XP Control. Ao combinar recuperação de informações, memória contextual e execução programável, a LLM se torna uma peça central na intervenção financeira e no desbloqueio da gamificação bimodal.
+
+---
+
+### Objetivos da Arquitetura LLM
+
+1. **Aumentar a precisão do diagnóstico** durante a triagem de dívidas e análise do fluxo de caixa.  
+2. **Manter o diálogo personalizado** usando contexto recuperado via embeddings.  
+3. **Permitir que o agente execute ações reais**, como criar metas, sugerir pagamentos ou iniciar fluxos de negociação.  
+4. **Evitar alucinações**, garantindo que toda resposta relevante esteja ancorada em dados do usuário (RAG).  
+5. **Criar um agente proativo**, capaz de monitorar mudanças financeiras e reagir automaticamente.
+
+---
+
+### A) RAG no XP Control (Retrieval Augmented Generation)
+
+O RAG será utilizado em duas áreas críticas do produto:
+
+#### 1. Triagem Inteligente de Dívidas
+Durante a fase de onboarding, o usuário alimenta o sistema via chat com informações informais (empréstimo com amigo, dívida com agiota, parcela atrasada da faculdade).  
+Para reduzir erros e recuperar histórico corretamente, o agente consulta:
+
+- Base vetorial com contextos financeiros (limites de cartão, taxas típicas, categorias de despesas, classificações de risco)  
+- Histórico de interações anteriores  
+- Documentação interna da plataforma (regras da jornada, política de XP Coins, limites de gamificação)
+
+Fluxo RAG no XP Control:
+
+1. Usuário envia pergunta  
+2. Sistema calcula embedding e faz **similarity_search**  
+3. Gemini recebe *pergunta + contexto recuperado*  
+4. Gera resposta ancorada no contexto  
+5. Registra no banco (`chat_agente`)
+
+---
+
+### B) Embeddings no Banco (Memória Financeira Vetorial)
+
+Cada interação do usuário gera conhecimento que o agente precisa lembrar:
+
+- Perfil de risco  
+- Categoria e prioridade das dívidas  
+- Padrões psicológicos detectados  
+- Erros recorrentes no jogo  
+- Progresso completo da jornada  
+- Histórico de scripts criados pelo próprio agente  
+
+Essas informações são armazenadas como **documentos vetoriais**, permitindo consultas rápidas e contextuais.
+
+#### Fontes de Documentos Vetorizados
+
+1. Regras internas da gamificação  
+2. Explicações sobre estratégias de pagamento  
+3. Histórico financeiro do usuário  
+4. Conteúdos da XP Educação  
+5. Scripts de negociação gerados anteriormente  
+
+---
+
+### C) Function Calling: A Ação Automática do Agente
+
+O Function Calling transforma o agente em um sistema capaz de **executar ações reais**, ativando funções internas do backend.
+
+#### Funções Disponíveis
+
+- `criar_meta_quitacao(divida_id, valor_alvo)`  
+- `registrar_pagamento(divida_id, valor, metodo)`  
+- `adicionar_despesa(valor, categoria, descricao)`  
+- `sugerir_prioridade(dividas)`  
+- `classificar_transacao(raw_text)`  
+- `gerar_script_negociacao(divida_id)`  
+- `marcar_missao_completa(missao_id)`  
+
+### Fluxo Completo
+
+1. Usuário envia intenção  
+2. Gemini interpreta e ativa `function_call`  
+3. Backend executa a função  
+4. Agente retorna confirmação + explicação didática  
+
+Exemplo:
+> “Quero começar a guardar 50 reais por mês para o boleto da faculdade.”  
+→ Gemini detecta intenção  
+→ Chama `criar_meta_quitacao`  
+→ Backend cria a meta  
+→ Agente confirma e dá orientação financeira
+
+---
+
+#### D) Arquitetura Unificada: Gemini + RAG + FC
+
+```
+Usuário
+↓
+Chat Agent (Gemini)
+↓
+[1] RAG → Recupera contexto relevante
+↓
+[2] LLM → Entende intenção + gera resposta
+↓
+[3] Function Calling → Executa ações reais
+↓
+Backend (Supabase + APIs)
+↓
+Retorno ao usuário
+```
+
+---
+
+### E) Casos de Uso Concretos
+
+#### 1. Triagem de Dívidas (Onboarding)
+Usuário: *“Tenho uma dívida de 800 reais com meu primo, mas não sei quanto falta.”*
+
+- RAG busca histórico + regras de dívidas externas  
+- Gemini identifica entidade “primo"  
+- Agente chama: `registrar_divida_externa()`  
+
+#### 2. Sugestão de Pagamento (Modo Resgate)
+Usuário: *“O salário caiu, qual dívida pago primeiro?”*
+
+- RAG recupera dívidas + taxas  
+- Function calling executa simulação  
+- Agente responde com estratégia ótima  
+
+#### 3. Feedback Personalizado nos Jogos
+Gemini usa embeddings do usuário para explicar **por que** uma decisão foi boa ou ruim.
+
+#### 4. Modo Investidor (Jogo 2)
+Agente usa memória vetorial para sugerir abordagens compatíveis com o perfil comportamental do usuário.
+
+---
+
+### F) Benefícios Diretos da Arquitetura
+
+| Recurso | Impacto para o Usuário | Impacto para a XP Inc |
+|--------|--------------------------|------------------------|
+| **RAG** | Respostas precisas e seguras | Redução de riscos e alucinação |
+| **Embeddings** | Memória personalizada | Engajamento e retenção |
+| **Function Calling** | Ações com um clique | Automação e escalabilidade |
+| **Gemini** | Custo baixo e alta performance | Base sólida para expansão |
+
+---
+
+### Conclusão
+
+&emsp; A integração de Gemini + RAG + Function Calling transforma o Agente Sentinel em um assistente financeiro verdadeiramente inteligente, proativo e seguro. A arquitetura dá profundidade técnica ao XP Control, fortalece o impacto educacional da gamificação e garante alinhamento total com questões de compliance e confiabilidade necessárias em um produto do ecossistema XP Inc.
+
 ## <a name="db-estrutura"></a>3.3. Estrutura do Banco de Dados
 
 &emsp; O banco de dados do XP Control foi projetado no **Supabase (PostgreSQL)** com foco em normalização, performance e segurança. A estrutura é composta por 9 tabelas principais, todas protegidas por Row Level Security (RLS). 
