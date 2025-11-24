@@ -17,7 +17,7 @@
 
 ## Descrição
 
-&emsp; O presente projeto, XP Control, é uma solução mobile de intervenção comportamental e gestão de crise financeira voltada para jovens da Geração Z (18 a 30 anos). A proposta surgiu a partir da identificação de um cenário crítico no Brasil: mais de 12,5 milhões de jovens endividados, agravado pela ascensão das apostas online (bets) e pela falta de controle de gastos impulsivos. O desafio central abordado é a desconexão entre a educação financeira tradicional — vista como lenta e teórica — e a busca dessa geração por recompensas imediatas.
+&emsp; O presente projeto, XP Control, é uma solução mobile de intervenção comportamental e gestão de crise financeira voltada para jovens da Geração Z (18 a 30 anos). A proposta surgiu a partir da identificação de um cenário crítico no Brasil: mais de 12,5 milhões de jovens endividados, agravado pela ascensão das apostas online (bets) e pela falta de controle de gastos impulsivos. O desafio central abordado é a desconexão entre a educação financeira tradicional, vista como lenta e teórica, e a busca dessa geração por recompensas imediatas.
 
 &emsp; A solução consiste em um sistema de "Gamificação Bimodal" que opera em dois estágios rígidos e complementares: o Modo Resgate e o Modo Investidor. A aplicação utiliza Open Finance para realizar um diagnóstico profundo da saúde financeira do usuário, identificando não apenas dívidas bancárias, mas também padrões de comportamento de risco, como transferências recorrentes para casas de aposta. Para capturar dívidas informais (familiares ou externas), o sistema implementa uma triagem inicial conduzida por Inteligência Artificial.
 

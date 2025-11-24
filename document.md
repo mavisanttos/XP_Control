@@ -32,7 +32,7 @@
 
 [4. Monetização e Futuro](#c4)
 - [4.1. Monetização](#monetizacao)
-- [4.2. Próximos Passos](#proximos-passos)
+- [4.2. Próximos Passos e Implementação do Produto](#proximos-passos)
 
 [5. Referências](#c5)
 
@@ -172,35 +172,31 @@ Este é o ponto de conversão e a recompensa máxima pela disciplina: quando a �
 
 &emsp; O conceito de Gamificação Bimodal é a funcionalidade mais disruptiva do projeto. Ele se baseia na separação da experiência para impor uma prioridade de aprendizado:
 
-- **Modo Resgate (Jogo 1 Liberado)**: Ativado automaticamente quando o App identifica dívidas críticas. O foco é a estabilização e o resgate financeiro. O acesso ao Jogo 2 (Investimentos) é bloqueado.
+- **Modo Resgate (Jogo 1 Liberado)**: Ativado automaticamente quando o App identifica dívidas críticas. O foco é a estabilização e o resgate financeiro. O Jogo 1 é, na verdade, um hub que contém dois módulos didáticos distintos (Cartas Interativas e Simulador de Estratégia de Resgate), ambos focados na reversão comportamental. O acesso ao Jogo 2 (Investimentos) é bloqueado com um cadeado visível.
 
-- **Modo Investidor (Jogo 2 Liberado)**: Ativado somente após a quitação das dívidas críticas. O foco é a multiplicação.
+- **Modo Investidor (Jogo 2 Liberado)**: Liberado automaticamente (o Victory State) somente após a quitação total das dívidas críticas e a prova da disciplina. Este modo representa o prêmio e a transição do usuário: o foco é direcionado integralmente para a multiplicação e construção de patrimônio, utilizando o Jogo 2 como porta de entrada gamificada para o ecossistema de investimentos da XP Inc.
 
 &emsp; Esta mecânica cria um incentivo não monetário poderoso, transformando a quitação de dívidas de uma obrigação dolorosa em uma missão cujo prêmio é o acesso ao status de investidor.
 
 ### <a name="funcionalidades-chave"></a>2.3.2. Metodologia do Jogo (Alocação Estratégica)
 
-&emsp; O Jogo 1 (Modo Resgate) utiliza a estrutura de Missões Diárias (criando a "ofensiva") para engajar o usuário continuamente. Ele é composto por dois módulos distintos, cada um focado em um aspecto comportamental e financeiro:
+&emsp; A metodologia de jogo é o motor didático da plataforma, atuando em dois estágios distintos:
 
-**Cartas Interativas (Hack de Impulso)**
+**Módulos do Jogo 1 (Modo Resgate):** Este estágio utiliza a estrutura de Missões Diárias para engajar o usuário continuamente na reversão comportamental:
 
-&emsp; Este módulo usa uma mecânica de swipes (arrastar para os lados, similar ao jogo Reigns) para simular decisões financeiras sob pressão. O objetivo é treinar o controle de impulso da Geração Z, forçando o usuário a julgar rapidamente cenários de consumo e alocação. Cada acerto correto gera XP Coins e reforça o caminho da disciplina.
+- Cartas Interativas (Hack de Impulso): Este módulo usa uma mecânica de swipes (arrastar para os lados, similar ao jogo Reigns) para simular decisões financeiras sob pressão. O objetivo é treinar o controle de impulso, forçando o usuário a julgar rapidamente cenários de consumo e alocação. Cada acerto correto gera XP Coins.
 
-**Simulador de Estratégia de Resgate (Alocação Inteligente)**
+- Simulador de Estratégia de Resgate (Alocação Inteligente): Este é o núcleo de matemática financeira. O simulador desafia o usuário a aplicar o conhecimento de priorização de dívidas em cenários baseados em dívidas reais. O Agente de IA fornece o cenário, e o usuário deve alocar o recurso, transformando teorias complexas em ação prática e mensurável.
 
-&emsp; Este é o núcleo de matemática financeira. O simulador desafia o usuário a aplicar o conhecimento de priorização de dívidas em cenários baseados em dívidas reais. O Agente de IA fornece o cenário, e o usuário deve alocar o recurso, transformando teorias complexas em ação prática e mensurável.
+**Jogo 2 (Modo Investidor): O Simulador de Mercado:** Este módulo é a recompensa final pela disciplina. O Simulador de Mercado simula operações de investimento reais (renda fixa, fundos). Os acertos e estratégias bem-sucedidas neste simulador se convertem em aportes iniciais e reais em produtos de prateleira da XP (CDB, Tesouro), reforçando a ideia de que o lucro é uma consequência da estratégia e não da sorte.
 
-**O Agente Proativo**
-
-&emsp; O Agente Proativo é um assistente virtual baseado em LLM (Large Language Model) que garante a proatividade da intervenção.
+**O Agente de IA:** O Agente Sentinel é um assistente virtual baseado em LLM (Large Language Model) que garante a proatividade da intervenção e elimina a fricção da gestão de dívidas:
 
 - Função Proativa: Monitora o fluxo de caixa em tempo real (via Open Finance) e sugere ações no momento exato (Ex: "Seu pagamento caiu. Sugiro a Estratégia X agora para economizar R$ Y em juros.").
 
-- Geração de Script: Ele é capaz de gerar scripts de negociação personalizados com base no perfil de dívida do usuário, que podem ser copiados e enviados diretamente aos credores via WhatsApp, reduzindo a fricção e o medo de negociar.
+- Geração de Script: É capaz de gerar scripts de negociação personalizados com base no perfil de dívida do usuário, que podem ser copiados e enviados diretamente aos credores via WhatsApp, reduzindo o medo e a procrastinação da negociação.
 
-**O Cofrinho Inteligente**
-
-&emsp; Esta funcionalidade resolve o problema da reserva de recursos e garante valor para a XP. O Cofrinho é o destino primário para dinheiro poupado para quitação de dívidas externas. Ele automatiza a retenção do dinheiro e, em vez de deixar o saldo parado na conta, aplica o montante em um CDB de liquidez diária da XP. Assim, o usuário começa a gerar custódia e se familiarizar com os produtos de investimento da XP Inc. antes mesmo de sair do Modo Resgate.
+**O Cofrinho Inteligente (Geração de Custódia):** Esta funcionalidade resolve o problema da reserva de recursos e garante valor para a XP. O Cofrinho é o destino primário para dinheiro poupado para quitação de dívidas externas. Ele automatiza a retenção do dinheiro e, em vez de deixar o saldo parado, aplica o montante em um CDB de liquidez diária da XP. Assim, o usuário começa a gerar custódia e a se familiarizar com os produtos de investimento da XP Inc. antes mesmo de sair do Modo Resgate.
 
 &emsp; As funcionalidades chave do XP Control representam um avanço metodológico, utilizando a Gamificação Bimodal para travar o risco e premiar a disciplina. A integração do Agente de IA com o Open Finance e os módulos de jogo didáticos garantem que a intervenção seja preditiva e altamente personalizada, transformando o ciclo de dívida em um funil eficiente e engajador para a aquisição de clientes qualificados para a XP Inc. O detalhamento visual dessas funcionalidades será abordado na próxima seção.
 
@@ -247,6 +243,7 @@ Este é o ponto de conversão e a recompensa máxima pela disciplina: quando a �
 # <a name="c3"></a>3. Arquitetura e Implementação
 
 &emsp; Esta seção detalha a arquitetura técnica que será desenvolvida para o XP Control, desde a estrutura do sistema até os requisitos não funcionais. **É importante destacar que esta documentação descreve a arquitetura planejada e as tecnologias que serão implementadas**, não o estado atual do protótipo. O projeto será desenvolvido utilizando tecnologias modernas de desenvolvimento web, com foco em escalabilidade, segurança e performance. A arquitetura seguirá o padrão de aplicação web full-stack, separando claramente as responsabilidades entre frontend, backend e banco de dados.
+
 ## <a name="arquitetura"></a>3.1. Arquitetura do Sistema
 
 &emsp; O XP Control adotará uma arquitetura de aplicação web moderna baseada em **Next.js 16** (React 19) com **TypeScript**, utilizando o padrão de **Server-Side Rendering (SSR)** e **Client-Side Rendering (CSR)** conforme necessário. A arquitetura será dividida em três camadas principais:
@@ -279,10 +276,6 @@ Este é o ponto de conversão e a recompensa máxima pela disciplina: quando a �
   <img src=assets\diagrama_simples.png><br>
   <sup>Fonte: Material produzido pelos autores (2025)</sup>
 </div>
-
-
-
-
 
 &emsp; A arquitetura utilizará **Row Level Security (RLS)** do Supabase para garantir que cada usuário acesse apenas seus próprios dados. O sistema implementará triggers automáticos no banco de dados para criar perfis e carteiras automaticamente quando um novo usuário for registrado.
 
@@ -681,7 +674,45 @@ Splash → Login → Signup → Open Finance → Triage → Dashboard
 
 ## <a name="monetizacao"></a>4.1. Viabilidade Econômica
 
-## <a name="proximos-passos"></a>4.2. Próximos Passos
+## <a name="proximos-passos"></a>4.2. Próximos Passos e Implementação do Produto
+
+&emsp; Com a arquitetura do produto e a metodologia didática estabelecidas, os próximos passos visam a execução técnica e a validação do impacto comportamental da Gamificação Bimodal. O plano de trabalho está dividido em três fases estratégicas, focadas em garantir o lançamento de um Produto Mínimo Viável (MVP) robusto, seguido por testes rigorosos e, por fim, a escala dentro do ecossistema XP.
+
+**Desenvolvimento: Roadmap de Implementação e Evolução**
+
+Fase 1: Desenvolvimento e Lançamento do MVP (6 Meses)
+
+Esta fase foca na construção das funcionalidades essenciais para intervenção e resgate:
+
+- Integração de Dados: Finalizar a integração estável com o Open Finance para diagnóstico de dívidas e rastreamento de risco (apostas).
+
+- Núcleo Bimodal: Desenvolver o Modo Resgate, o Hub de Comando e o Jogo 1 (Cartas Interativas e Simulador de Estratégia de Resgate).
+
+- Custódia Inicial: Implementar o Cofrinho Inteligente, garantindo a aplicação automática em CDBs XP (liquidez diária) e a geração de custódia desde o início.
+
+- Agente de Intervenção: Desenvolver o módulo básico do Agente para sugestões proativas de quitação.
+
+Fase 2: Testes Comportamentais e Validação (3 Meses)
+
+O objetivo é provar que a Gamificação Bimodal gera resultados comportamentais superiores:
+
+- Testes A/B: Realizar um piloto com um grupo representativo da Geração Z (perfis de alto risco), comparando o engajamento e a taxa de quitação do XP Control versus abordagens tradicionais de educação financeira.
+
+- Otimização do Jogo: Ajustar a dificuldade, as recompensas (XP Coins) e as regras do Jogo 1 com base no feedback dos usuários e na taxa de adesão às Missões Diárias.
+
+- Validação da Conversão: Monitorar a taxa de clientes que, após a quitação, já possuem custódia ativa (via Cofrinho) e que demonstram interesse na migração para o Jogo 2.
+
+Fase 3: Escala e Expansão (Longo Prazo)
+
+Foco na maximização do valor para o usuário e para a XP Inc.:
+
+- Liberação do Jogo 2: Desenvolver e lançar o Simulador de Mercado e o mecanismo de conversão de acertos em aportes reais em renda variável.
+
+- Integração Profunda: Criar deep linking e trilhas personalizadas na tela XP Educação com base no perfil de risco e progresso do usuário.
+
+- Expansão do Agente: Aprimorar o Agente para incluir negociações automatizadas mais complexas e sugestões de otimização fiscal.
+
+&emsp; Os próximos passos delineados transformam o XP Control de um conceito inovador em um funil de aquisição de clientes mensurável e de alto impacto. Ao priorizar a intervenção e a disciplina no MVP e garantir que o sucesso do usuário se traduza diretamente em custódia XP, o projeto assegura que a XP Inc. se posicione como a parceira financeira ideal para a Geração Z, redefinindo o caminho para o investimento no Brasil.
 
 # <a name="c5"></a>5. Referências
 
