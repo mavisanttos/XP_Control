@@ -166,11 +166,83 @@ Este é o ponto de conversão e a recompensa máxima pela disciplina: quando a �
 
 ## <a name="funcionalidades-chave"></a>2.3. Funcionalidades Chave e Metodologia
 
+&emsp; Esta seção aprofunda os mecanismos centrais que tornam o XP Control um sistema de intervenção eficaz, indo além da gestão passiva de finanças. A metodologia do projeto é ancorada em duas premissas: impor a disciplina antes de recompensar o ganho e automatizar a estratégia para combater o comportamento impulsivo (como o de Lucas). As funcionalidades chave e a metodologia de jogo são projetadas para criar um ciclo de feedback positivo onde o sucesso nos jogos se traduz diretamente em progresso financeiro real.
+
 ### <a name="funcionalidades-chave"></a>2.3.1. Gamificação Bimodal
+
+&emsp; O conceito de Gamificação Bimodal é a funcionalidade mais disruptiva do projeto. Ele se baseia na separação da experiência para impor uma prioridade de aprendizado:
+
+- **Modo Resgate (Jogo 1 Liberado)**: Ativado automaticamente quando o App identifica dívidas críticas. O foco é a estabilização e o resgate financeiro. O acesso ao Jogo 2 (Investimentos) é bloqueado.
+
+- **Modo Investidor (Jogo 2 Liberado)**: Ativado somente após a quitação das dívidas críticas. O foco é a multiplicação.
+
+&emsp; Esta mecânica cria um incentivo não monetário poderoso, transformando a quitação de dívidas de uma obrigação dolorosa em uma missão cujo prêmio é o acesso ao status de investidor.
 
 ### <a name="funcionalidades-chave"></a>2.3.2. Metodologia do Jogo (Alocação Estratégica)
 
+&emsp; O Jogo 1 (Modo Resgate) utiliza a estrutura de Missões Diárias (criando a "ofensiva") para engajar o usuário continuamente. Ele é composto por dois módulos distintos, cada um focado em um aspecto comportamental e financeiro:
+
+**Cartas Interativas (Hack de Impulso)**
+
+&emsp; Este módulo usa uma mecânica de swipes (arrastar para os lados, similar ao jogo Reigns) para simular decisões financeiras sob pressão. O objetivo é treinar o controle de impulso da Geração Z, forçando o usuário a julgar rapidamente cenários de consumo e alocação. Cada acerto correto gera XP Coins e reforça o caminho da disciplina.
+
+**Simulador de Estratégia de Resgate (Alocação Inteligente)**
+
+&emsp; Este é o núcleo de matemática financeira. O simulador desafia o usuário a aplicar o conhecimento de priorização de dívidas em cenários baseados em dívidas reais. O Agente de IA fornece o cenário, e o usuário deve alocar o recurso, transformando teorias complexas em ação prática e mensurável.
+
+**O Agente Proativo**
+
+&emsp; O Agente Proativo é um assistente virtual baseado em LLM (Large Language Model) que garante a proatividade da intervenção.
+
+- Função Proativa: Monitora o fluxo de caixa em tempo real (via Open Finance) e sugere ações no momento exato (Ex: "Seu pagamento caiu. Sugiro a Estratégia X agora para economizar R$ Y em juros.").
+
+- Geração de Script: Ele é capaz de gerar scripts de negociação personalizados com base no perfil de dívida do usuário, que podem ser copiados e enviados diretamente aos credores via WhatsApp, reduzindo a fricção e o medo de negociar.
+
+**O Cofrinho Inteligente**
+
+&emsp; Esta funcionalidade resolve o problema da reserva de recursos e garante valor para a XP. O Cofrinho é o destino primário para dinheiro poupado para quitação de dívidas externas. Ele automatiza a retenção do dinheiro e, em vez de deixar o saldo parado na conta, aplica o montante em um CDB de liquidez diária da XP. Assim, o usuário começa a gerar custódia e se familiarizar com os produtos de investimento da XP Inc. antes mesmo de sair do Modo Resgate.
+
+&emsp; As funcionalidades chave do XP Control representam um avanço metodológico, utilizando a Gamificação Bimodal para travar o risco e premiar a disciplina. A integração do Agente de IA com o Open Finance e os módulos de jogo didáticos garantem que a intervenção seja preditiva e altamente personalizada, transformando o ciclo de dívida em um funil eficiente e engajador para a aquisição de clientes qualificados para a XP Inc. O detalhamento visual dessas funcionalidades será abordado na próxima seção.
+
 ## <a name="funcionalidades-interface"></a>2.4. Funcionalidades da Interface
+
+&emsp; A interface do XP Control é projetada para ser mais do que um meio de navegação: ela é a máquina de motivação e feedback do usuário. Cada elemento visual, desde as barras de progresso até a exibição de recompensas, é desenhado para reverter a tendência do jovem de ignorar seus números. A interface traduz a complexidade da matemática financeira em um jogo visualmente claro, com foco em três pilares: transparência imediata, recompensa tangível e progresso contínuo.
+
+**Desenvolvimento: Design para Engajamento e Disciplina**
+
+&emsp; As funcionalidades da interface são agrupadas por área de foco, garantindo que o usuário seja continuamente incentivado a avançar no Modo Resgate:
+
+**1. Hub de Comando (Dashboard)**
+
+&emsp; A tela principal é o centro de comando e visibilidade, crucial para quebrar a cegueira financeira.
+
+- Barra de Progresso: Elemento visual fixo que quantifica o progresso da quitação de dívidas, oferecendo uma métrica clara e animadora do caminho percorrido até o Modo Investidor.
+
+- Cards de Status: Exibem de forma proeminente o Saldo Global (visibilidade total) e o saldo de XP Coins, transformando a recompensa virtual em um ativo real e constante.
+
+- Missões Diárias (Ofensiva): Um card dinâmico que lista as tarefas diárias (jogos, quitação), reforçando o conceito de "ofensiva" e incentivando o streak (sequência) de disciplina.
+
+**2. Aba Jogos (Gamificação Visual)**
+
+&emsp; Esta aba transforma a disciplina em performance.
+
+- Métricas de Desempenho: Exibe a Pontuação Total e o número de Jogos Completos (a "ofensiva"), criando um senso de conquista e competição pessoal.
+
+- Bloqueio Bimodal: O Simulador de Mercado (Jogo 2) é apresentado com um ícone de cadeado visível, funcionando como a principal meta aspiracional. Sua liberação é o Victory State, o ápice da jornada.
+
+- Interação Intuitiva: O jogo de Cartas Interativas utiliza a mecânica de swipe (arrastar) para garantir a usabilidade nativa digital, tornando a tomada de decisão financeira rápida e acessível.
+
+- Visualização Estratégica (Simulador): O Simulador de Estratégia de Resgate apresenta visualmente as dívidas e os fluxos de caixa, permitindo que o usuário arraste e aloque o dinheiro para a opção matematicamente mais vantajosa, transformando a matemática complexa em uma interface de alocação estratégica.
+
+**3. Aba Dívidas (Transparência e Ação)**
+
+&emsp; A interface aqui é desenhada para converter o diagnóstico em ação prática.
+
+- Diferenciação Visual: A aba separa claramente Dívidas Bancárias de Dívidas Externas, facilitando a estratégia do usuário.
+
+- Cofrinho Integrado: O botão de "Guardar Dinheiro" (que ativa o Cofrinho Inteligente / CDB XP) é exibido ao lado de cada dívida, incentivando a aplicação imediata do recurso.
+
+&emsp; O design da interface do XP Control é um componente metodológico fundamental. Ele usa o reforço positivo (XP Coins, Barras de Progresso) e o incentivo aspiracional (Modo Investidor) para criar um ambiente de alta motivação. Ao transformar números complexos em métricas de jogo simples e engajadoras, a interface garante que o usuário Geração Z permaneça focado na disciplina, acelerando sua conversão de devedor em investidor qualificado para a XP Inc.
 
 # <a name="c3"></a>3. Arquitetura e Implementação
 
