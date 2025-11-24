@@ -720,7 +720,7 @@ Splash → Login → Signup → Open Finance → Triage → Dashboard
 
 **Desenvolvimento: Roadmap de Implementação e Evolução**
 
-Fase 1: Desenvolvimento e Lançamento do MVP (6 Meses)
+**Fase 1:** Desenvolvimento e Lançamento do MVP (6 Meses)
 
 Esta fase foca na construção das funcionalidades essenciais para intervenção e resgate:
 
@@ -732,7 +732,7 @@ Esta fase foca na construção das funcionalidades essenciais para intervenção
 
 - Agente de Intervenção: Desenvolver o módulo básico do Agente Sentinel para sugestões proativas de quitação.
 
-Fase 2: Testes Comportamentais e Validação (3 Meses)
+**Fase 2:** Testes Comportamentais e Validação (3 Meses)
 
 O objetivo é provar que a Gamificação Bimodal gera resultados comportamentais superiores:
 
@@ -742,7 +742,7 @@ O objetivo é provar que a Gamificação Bimodal gera resultados comportamentais
 
 - Validação da Conversão: Monitorar a taxa de clientes que, após a quitação, já possuem custódia ativa (via Cofrinho) e que demonstram interesse na migração para o Jogo 2.
 
-Fase 3: Escala e Expansão (Longo Prazo)
+**Fase 3:** Escala e Expansão (Longo Prazo)
 
 Foco na maximização do valor para o usuário e para a XP Inc.:
 
