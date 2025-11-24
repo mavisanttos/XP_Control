@@ -12,12 +12,12 @@
 
 ## Integrantes: 
 - <a href="https://www.linkedin.com/in/maria-vit%C3%B3ria-dos-santos/">Maria Vitória</a>
-- <a href="https://www.linkedin.com/in/maria-vit%C3%B3ria-dos-santos/">Matheus Ferreira</a> 
-- <a href="https://www.linkedin.com/in/maria-vit%C3%B3ria-dos-santos/">Paulo Henrique</a> 
+- <a href="https://www.linkedin.com/in/matheusferreirads-/">Matheus Ferreira</a> 
+- <a href="https://www.linkedin.com/in/paulo-henrique0601/">Paulo Henrique</a> 
 
 ## Descrição
 
-&emsp; O presente projeto, XP Control, é uma solução mobile de intervenção comportamental e gestão de crise financeira voltada para jovens da Geração Z (18 a 30 anos). A proposta surgiu a partir da identificação de um cenário crítico no Brasil: mais de 12,5 milhões de jovens endividados, agravado pela ascensão das apostas online (bets) e pela falta de controle de gastos impulsivos. O desafio central abordado é a desconexão entre a educação financeira tradicional — vista como lenta e teórica — e a busca dessa geração por recompensas imediatas.
+&emsp; O presente projeto, XP Control, é uma solução mobile de intervenção comportamental e gestão de crise financeira voltada para jovens da Geração Z (18 a 30 anos). A proposta surgiu a partir da identificação de um cenário crítico no Brasil: mais de 12,5 milhões de jovens endividados, agravado pela ascensão das apostas online (bets) e pela falta de controle de gastos impulsivos. O desafio central abordado é a desconexão entre a educação financeira tradicional, vista como lenta e teórica, e a busca dessa geração por recompensas imediatas.
 
 &emsp; A solução consiste em um sistema de "Gamificação Bimodal" que opera em dois estágios rígidos e complementares: o Modo Resgate e o Modo Investidor. A aplicação utiliza Open Finance para realizar um diagnóstico profundo da saúde financeira do usuário, identificando não apenas dívidas bancárias, mas também padrões de comportamento de risco, como transferências recorrentes para casas de aposta. Para capturar dívidas informais (familiares ou externas), o sistema implementa uma triagem inicial conduzida por Inteligência Artificial.
 
@@ -40,6 +40,52 @@ Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
 
 - <b>README.md</b>: arquivo que serve como guia e explicação geral sobre o projeto (o mesmo que você está lendo agora).
 
+##  Como Rodar o Projeto
+
+Para executar o projeto localmente e visualizar o frontend desenvolvido, siga os passos abaixo:
+
+### Pré-requisitos
+
+- Node.js (versão 18 ou superior)
+- npm ou pnpm instalado
+
+### Passo 1: Instalar Dependências
+
+Navegue até a pasta `src` e instale as dependências do projeto:
+
+```bash
+cd src
+npm install
+```
+
+ou, se estiver usando pnpm:
+
+```bash
+cd src
+pnpm install
+```
+
+### Passo 2: Executar o Projeto
+
+Com as dependências instaladas, execute o servidor de desenvolvimento:
+
+```bash
+npm run dev
+```
+
+ou, se estiver usando pnpm:
+
+```bash
+pnpm dev
+```
+
+### Passo 3: Acessar a Aplicação
+
+Abra seu navegador e acesse **http://localhost:3000** para visualizar a interface do projeto.
+
+> **Nota:** O projeto está em desenvolvimento e ainda não possui conexão com banco de dados. A visualização atual mostra a interface e os componentes desenvolvidos.
+
+---
 
 ## 📋 Licença/License
 
