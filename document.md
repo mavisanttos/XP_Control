@@ -253,7 +253,6 @@ Este é o ponto de conversão e a recompensa máxima pela disciplina: quando a �
 
 🔗 **Link do Protótipo no Figma**: [FigJam!](https://www.figma.com/board/aYmf3lZ6Fw62MZ1mKbCohB/XP-CONTROL---FLUXO-DE-TELAS?node-id=0-1&t=RgwXkpxTF2yCAzV6-1)
 
-<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://embed.figma.com/board/aYmf3lZ6Fw62MZ1mKbCohB/XP-CONTROL---FLUXO-DE-TELAS?node-id=0-1&embed-host=share" allowfullscreen></iframe>
 
 ---
 
