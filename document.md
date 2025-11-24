@@ -174,10 +174,10 @@ Este é o ponto de conversão e a recompensa máxima pela disciplina: quando a �
 
 # <a name="c3"></a>3. Arquitetura e Implementação
 
-&emsp; Esta seção detalha a arquitetura técnica do XP Control, desde a estrutura do sistema até os requisitos não funcionais. O projeto foi desenvolvido utilizando tecnologias modernas de desenvolvimento web, com foco em escalabilidade, segurança e performance. A arquitetura segue o padrão de aplicação web full-stack, separando claramente as responsabilidades entre frontend, backend e banco de dados.
+&emsp; Esta seção detalha a arquitetura técnica que será desenvolvida para o XP Control, desde a estrutura do sistema até os requisitos não funcionais. **É importante destacar que esta documentação descreve a arquitetura planejada e as tecnologias que serão implementadas**, não o estado atual do protótipo. O projeto será desenvolvido utilizando tecnologias modernas de desenvolvimento web, com foco em escalabilidade, segurança e performance. A arquitetura seguirá o padrão de aplicação web full-stack, separando claramente as responsabilidades entre frontend, backend e banco de dados.
 ## <a name="arquitetura"></a>3.1. Arquitetura do Sistema
 
-&emsp; O XP Control adota uma arquitetura de aplicação web moderna baseada em **Next.js 16** (React 19) com **TypeScript**, utilizando o padrão de **Server-Side Rendering (SSR)** e **Client-Side Rendering (CSR)** conforme necessário. A arquitetura é dividida em três camadas principais:
+&emsp; O XP Control adotará uma arquitetura de aplicação web moderna baseada em **Next.js 16** (React 19) com **TypeScript**, utilizando o padrão de **Server-Side Rendering (SSR)** e **Client-Side Rendering (CSR)** conforme necessário. A arquitetura será dividida em três camadas principais:
 
 **1. Camada de Apresentação (Frontend)**
 - **Framework**: Next.js 16 com App Router
@@ -212,17 +212,17 @@ Este é o ponto de conversão e a recompensa máxima pela disciplina: quando a �
 
 
 
-&emsp; A arquitetura utiliza **Row Level Security (RLS)** do Supabase para garantir que cada usuário acesse apenas seus próprios dados. O sistema implementa triggers automáticos no banco de dados para criar perfis e carteiras automaticamente quando um novo usuário é registrado.
+&emsp; A arquitetura utilizará **Row Level Security (RLS)** do Supabase para garantir que cada usuário acesse apenas seus próprios dados. O sistema implementará triggers automáticos no banco de dados para criar perfis e carteiras automaticamente quando um novo usuário for registrado.
 
 ## <a name="integracoes"></a>3.2. Fluxo e Integrações
 
-&emsp; O XP Control integra-se com serviços externos para fornecer funcionalidades críticas de diagnóstico financeiro e assistência inteligente. O fluxo de integração foi projetado para ser seguro, escalável e manter a privacidade dos dados do usuário.
+&emsp; O XP Control integrar-se-á com serviços externos para fornecer funcionalidades críticas de diagnóstico financeiro e assistência inteligente. O fluxo de integração foi projetado para ser seguro, escalável e manter a privacidade dos dados do usuário.
 
 ### <a name="integracoes"></a>3.2.1. Integração Open Finance e LLM
 
 **Integração Open Finance:**
 
-&emsp; A integração com Open Finance é fundamental para o diagnóstico automático de dívidas bancárias. O fluxo funciona da seguinte forma:
+&emsp; A integração com Open Finance é fundamental para o diagnóstico automático de dívidas bancárias. O fluxo funcionará da seguinte forma:
 
 1. **Autorização do Usuário**: O usuário é direcionado para a tela de conexão Open Finance (`OpenFinanceScreen`), onde visualiza os termos de uso e benefícios da integração.
 
@@ -238,7 +238,7 @@ Este é o ponto de conversão e a recompensa máxima pela disciplina: quando a �
 
 **Integração LLM (Chat Agent):**
 
-&emsp; O Agente de IA do XP Control utiliza Large Language Models para fornecer assistência financeira personalizada. A implementação atual prepara a estrutura para integração com provedores como OpenAI ou Anthropic:
+&emsp; O Agente de IA do XP Control irá utilizar Large Language Models para fornecer assistência financeira personalizada. A implementação atual prepara a estrutura para integração com provedores como OpenAI ou Anthropic:
 
 1. **Estrutura de Mensagens**: O sistema armazena todas as interações no banco de dados (`chat_agente`), incluindo:
    - Mensagens do usuário
@@ -440,7 +440,7 @@ Splash → Login → Signup → Open Finance → Triage → Dashboard
 
 ## <a name="implementacao"></a>3.5. Implementação
 
-&emsp; A implementação do XP Control seguiu boas práticas de desenvolvimento moderno, priorizando type-safety, reutilização de código e manutenibilidade. Esta seção detalha as decisões técnicas e padrões implementados.
+&emsp; A implementação do XP Control seguirá boas práticas de desenvolvimento moderno, priorizando type-safety, reutilização de código e manutenibilidade. Esta seção detalha as decisões técnicas e padrões que serão implementados.
 
 **Stack Tecnológico:**
 
@@ -458,7 +458,7 @@ Splash → Login → Signup → Open Finance → Triage → Dashboard
 
 **Padrões de Código:**
 
-1. **TypeScript Strict Mode**: Projeto utiliza TypeScript com configuração strict para garantir type-safety
+1. **TypeScript Strict Mode**: Projeto utilizará TypeScript com configuração strict para garantir type-safety
 2. **Component Pattern**: Componentes funcionais com hooks, seguindo padrões do React moderno
 3. **Separation of Concerns**: Separação clara entre lógica de negócio, apresentação e dados
 4. **Reusable Components**: Componentes modulares e reutilizáveis (modals, cards, buttons)
@@ -506,9 +506,9 @@ Splash → Login → Signup → Open Finance → Triage → Dashboard
 **1. Segurança**
 
 - **Autenticação e Autorização**: 
-  - Sistema utiliza Supabase Auth com autenticação por email/senha
-  - Tokens JWT gerenciados automaticamente pelo Supabase
-  - Row Level Security (RLS) garante que usuários só acessem seus próprios dados
+  - Sistema utilizará Supabase Auth com autenticação por email/senha
+  - Tokens JWT serão gerenciados automaticamente pelo Supabase
+  - Row Level Security (RLS) garantirá que usuários só acessem seus próprios dados
   
 - **Proteção de Dados**:
   - Dados sensíveis (tokens Open Finance) armazenados de forma criptografada
@@ -517,7 +517,7 @@ Splash → Login → Signup → Open Finance → Triage → Dashboard
   
 - **Conformidade**:
   - Preparado para LGPD (Lei Geral de Proteção de Dados)
-  - Termos de uso e política de privacidade implementados na tela de Open Finance
+  - Termos de uso e política de privacidade serão implementados na tela de Open Finance
 
 **2. Performance**
 
@@ -603,7 +603,7 @@ Splash → Login → Signup → Open Finance → Triage → Dashboard
   - Logs de erros para debugging
   - Histórico de atividades do usuário no banco de dados
 
-&emsp; Em resumo, a Seção 3 estabeleceu que o XP Control foi arquitetado como uma aplicação web moderna, escalável e segura, utilizando tecnologias de ponta e seguindo boas práticas de desenvolvimento. A estrutura modular, o banco de dados normalizado e as integrações preparadas garantem que a plataforma possa evoluir e escalar conforme a necessidade, mantendo a qualidade e segurança necessárias para uma aplicação financeira.
+&emsp; Em resumo, a Seção 3 estabeleceu que o XP Control está sendo arquitetado como uma aplicação web moderna, escalável e segura, utilizando tecnologias de ponta e seguindo boas práticas de desenvolvimento. A estrutura modular, o banco de dados normalizado e as integrações preparadas garantem que a plataforma possa evoluir e escalar conforme a necessidade, mantendo a qualidade e segurança necessárias para uma aplicação financeira.
 
 # <a name="c4"></a>4. Viabilidade e Futuro
 
